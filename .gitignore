@@ -23,6 +23,3 @@
 /react/coverage
 /coverage
 .env
-
-# Ignore application configuration
-/config/application.yml
