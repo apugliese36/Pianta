@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20171218161735) do
 
   create_table "gardens", force: :cascade do |t|
     t.string "name", null: false
-    t.string "desciption"
+    t.string "description"
     t.string "photo"
     t.integer "user_id", null: false
   end
