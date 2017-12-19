@@ -6,9 +6,9 @@ class Api::V1::GardensController < ApiController
     render json: gardens
   end
 
-  def show
-    render json: Garden.find(params[:id])
-  end
+  # def show
+  #   render json: Garden.find(params[:id])
+  # end
 
   # def create
   #   superhero = Superhero.new(superhero_params)
