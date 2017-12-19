@@ -5,6 +5,8 @@ class CreateGardens < ActiveRecord::Migration[5.1]
       t.string :description
       t.string :photo
       t.integer :user_id, null: false
+
+      t.timestamps
     end
   end
 end
