@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Garden.destroy_all
 Plant.destroy_all
+Snapshot.destroy_all
 
 
 backyard = Garden.create(name: "Backyard Garden", description: "Parents backyard. Facing east. Shadow on the left side in afternoon.", user_id: 1)
@@ -17,3 +18,7 @@ bears_paw = Plant.create(name: "My Beary PAWZ", common_name: "bears paws", garde
 sunflower = Plant.create(name: "Sunny", common_name: "sunflower", garden: backyard)
 daisy = Plant.create(name: "Peach", common_name: "daisy", garden: window)
 tomatoes = Plant.create(name: "Tomato Tomato", common_name: "tomato", garden: backyard)
+
+entry_one = Snapshot.create(journal_entry: "Wow, she's budding!!", plant: bears_paw)
+entry_two = Snapshot.create(journal_entry: "Sunny grew almost 4 whole inches since last time! wow!", plant: sunflower)
+entry_three = Snapshot.create(journal_entry: "so cute!!", plant: sunflower)
