@@ -48,8 +48,9 @@ RSpec.describe Api::V1::PlantsController, type: :controller do
       expect(returned_json['plants'][1]['photo']).to eq 'sunflower.jpeg'
       expect(returned_json['plants'][1]['user_id']).to eq 1
       expect(returned_json['plants'][1]['snapshots'].size).to eq 1
-      expect(returned_json['plants'][1]['snapshots'][0]['journal_entry']).to eq
-        'Sunny grew almost 4 whole inches since last time! wow!'
+      expect(
+              returned_json['plants'][1]['snapshots'][0]['journal_entry']
+            ).to eq 'Sunny grew almost 4 whole inches since last time! wow!'
     end
   end
 
