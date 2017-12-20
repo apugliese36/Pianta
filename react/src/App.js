@@ -12,7 +12,6 @@ const App = props => {
           <IndexRoute component={PlantsIndexContainer}/>
           <Route path='/static_pages' component={PlantsIndexContainer}/>
           <Route path='/plants' component={PlantsIndexContainer}/>
-          <Route path='/plants/new' component={PlantsIndexContainer}/>
         </Route>
       </Router>
     </div>

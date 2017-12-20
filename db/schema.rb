@@ -20,9 +20,10 @@ ActiveRecord::Schema.define(version: 20171219195535) do
     t.string "common_name"
     t.string "scientific_name"
     t.string "photo"
-    t.string "light_requirement"
+    t.string "sunlight_needs"
     t.string "hardiness"
-    t.string "water_requirement"
+    t.string "watering_needs"
+    t.date "birthdate"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
