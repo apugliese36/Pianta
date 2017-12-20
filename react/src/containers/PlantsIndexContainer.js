@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PlantTile from '../components/PlantTile';
 import { Route, IndexRoute, Router, browserHistory, Link, Redirect } from 'react-router';
 import Modal from 'react-modal';
+import Dropzone from 'react-dropzone'
 
 const customStyles = {
   content : {
@@ -25,8 +26,8 @@ class PlantsIndexContainer extends Component {
       nickname: '',
       birthdate: '',
       sunlightNeeds: 'Sunny (Direct Sun)',
-      wateringNeeds: 'Daily'
-
+      wateringNeeds: 'Daily',
+      files: []
     };
     this.handleClick = this.handleClick.bind(this);
     this.openModal = this.openModal.bind(this);
@@ -36,7 +37,14 @@ class PlantsIndexContainer extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  onDrop(files) {
+    this.setState({
+      files
+    });
+  }
+
   handleInputChange(event) {
+    debugger;
     let value = event.target.value;
     let name = event.target.name;
 
@@ -103,13 +111,19 @@ class PlantsIndexContainer extends Component {
 
     let form;
     if (this.state.continueClicked) {
-      form = <form action="/upload" method="post" encType="multipart/form-data">
-                  <label>
-                    Upload A Photo Of Your Plant
-                    <input name="photo" type="file"/>
-                  </label>
-                  <input value="Submit" type="submit"/>
-              </form>
+      form = <section>
+              <div className="dropzone">
+                <Dropzone onDrop={this.onDrop.bind(this)}>
+                  <p>Try dropping some files here, or click to select files to upload.</p>
+                </Dropzone>
+              </div>
+              <aside>
+                <ul>
+                  { this.state.files.map(f => { return(<img src={`${f.preview}`} width='350' height='350'/>)}) }
+                </ul>
+                <img />
+              </aside>
+            </section>
     } else {
       form = <form>
               <label>
