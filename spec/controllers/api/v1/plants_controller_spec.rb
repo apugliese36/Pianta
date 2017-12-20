@@ -1,13 +1,14 @@
 require 'rails_helper'
 require 'spec_helper'
 
-RSpec.describe Api::V1::GardensController, type: :controller do
+RSpec.describe Api::V1::PlantsController, type: :controller do
 
-  let!(:backyard) do
-    Garden.create(
-      name: 'Backyard Garden',
-      description: 'Parents backyard. Facing east. Shadow on the left side in afternoon.',
-      user_id: 1
+  let!(:zucchini) do
+    Plant.create(
+      name: "Zucchini Lullini",
+      common_name: "zucchini",
+      user_id: 1,
+      photo: 'zucchini.jpeg'
     )
   end
 
@@ -15,7 +16,16 @@ RSpec.describe Api::V1::GardensController, type: :controller do
     Plant.create(
       name: "Sunny",
       common_name: "sunflower",
-      garden: backyard)
+      user_id: 1,
+      photo: 'sunflower.jpeg'
+    )
+  end
+
+  let!(:snapshot_one) do
+    Snapshot.create(
+      journal_entry: "Sunny grew almost 4 whole inches since last time! wow!",
+      plant: sunflower
+    )
   end
 
   describe 'GET#index' do
@@ -27,13 +37,22 @@ RSpec.describe Api::V1::GardensController, type: :controller do
       expect(response.status).to eq 200
       expect(response.content_type).to eq('application/json')
 
-      expect(returned_json['gardens'].length).to eq 1
-      expect(returned_json['gardens'][0]['name']).to eq 'Backyard Garden'
-      expect(returned_json['gardens'][0]['description']).to eq 'Parents backyard. Facing east. Shadow on the left side in afternoon.'
-      expect(returned_json['gardens'][0]['user_id']).to eq 1
-      expect(returned_json['gardens'][0]['plants'].size).to eq 1
-      expect(returned_json['gardens'][0]['plants'][0]['name']).to eq 'Sunny'
-      expect(returned_json['gardens'][0]['plants'][0]['common_name']).to eq 'sunflower'
+      expect(returned_json['plants'].length).to eq 2
+      expect(returned_json['plants'][0]['name']).to eq 'Zucchini Lullini'
+      expect(returned_json['plants'][0]['common_name']).to eq 'zucchini'
+      expect(returned_json['plants'][0]['photo']).to eq 'zucchini.jpeg'
+      expect(returned_json['plants'][0]['user_id']).to eq 1
+      expect(returned_json['plants'][0]['snapshots'].size).to eq 0
+
+      expect(returned_json['plants'].length).to eq 2
+      expect(returned_json['plants'][1]['name']).to eq 'Sunny'
+      expect(returned_json['plants'][1]['common_name']).to eq 'sunflower'
+      expect(returned_json['plants'][1]['photo']).to eq 'sunflower.jpeg'
+      expect(returned_json['plants'][1]['user_id']).to eq 1
+      expect(returned_json['plants'][1]['snapshots'].size).to eq 1
+      expect(returned_json['plants'][1]['snapshots'][0]['journal_entry']).to eq 'Sunny grew almost 4 whole inches since last time! wow!'
+
+
     end
   end
 

@@ -1,9 +1,9 @@
-class Api::V1::GardensController < ApiController
+class Api::V1::PlantsController < ApiController
   skip_before_action :verify_authenticity_token, only: [:create, :destroy]
 
   def index
-    gardens = Garden.all
-    render json: gardens
+    plants = Plant.all
+    render json: plants
   end
 
   # def show

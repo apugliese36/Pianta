@@ -1,16 +1,18 @@
 import React from 'react';
 import { Route, IndexRoute, Router, browserHistory } from 'react-router';
-import GardenIndexContainer from "./containers/GardenIndexContainer";
+import PlantsIndexContainer from "./containers/PlantsIndexContainer";
+import NavBar from "./components/NavBar";
+
 
 const App = props => {
   return(
     <div>
       <Router history={browserHistory}>
-        <Route path='/'>
-          <IndexRoute component={GardenIndexContainer}/>
-          <Route path='/static_pages' component={GardenIndexContainer}/>
-          <Route path='/gardens' component={GardenIndexContainer}/>
-          <Route path='/gardens/new' component={GardenIndexContainer}/>
+        <Route path='/' component={NavBar}>
+          <IndexRoute component={PlantsIndexContainer}/>
+          <Route path='/static_pages' component={PlantsIndexContainer}/>
+          <Route path='/plants' component={PlantsIndexContainer}/>
+          <Route path='/plants/new' component={PlantsIndexContainer}/>
         </Route>
       </Router>
     </div>
