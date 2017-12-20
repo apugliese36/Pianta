@@ -2,11 +2,10 @@ require 'rails_helper'
 require 'spec_helper'
 
 RSpec.describe Api::V1::PlantsController, type: :controller do
-
   let!(:zucchini) do
     Plant.create(
-      name: "Zucchini Lullini",
-      common_name: "zucchini",
+      name: 'Zucchini Lullini',
+      common_name: 'zucchini',
       user_id: 1,
       photo: 'zucchini.jpeg'
     )
@@ -14,8 +13,8 @@ RSpec.describe Api::V1::PlantsController, type: :controller do
 
   let!(:sunflower) do
     Plant.create(
-      name: "Sunny",
-      common_name: "sunflower",
+      name: 'Sunny',
+      common_name: 'sunflower',
       user_id: 1,
       photo: 'sunflower.jpeg'
     )
@@ -23,14 +22,13 @@ RSpec.describe Api::V1::PlantsController, type: :controller do
 
   let!(:snapshot_one) do
     Snapshot.create(
-      journal_entry: "Sunny grew almost 4 whole inches since last time! wow!",
+      journal_entry: 'Sunny grew almost 4 whole inches since last time! wow!',
       plant: sunflower
     )
   end
 
   describe 'GET#index' do
     it 'returns a list of all gardens' do
-
       get :index
       returned_json = JSON.parse(response.body)
 
@@ -50,9 +48,8 @@ RSpec.describe Api::V1::PlantsController, type: :controller do
       expect(returned_json['plants'][1]['photo']).to eq 'sunflower.jpeg'
       expect(returned_json['plants'][1]['user_id']).to eq 1
       expect(returned_json['plants'][1]['snapshots'].size).to eq 1
-      expect(returned_json['plants'][1]['snapshots'][0]['journal_entry']).to eq 'Sunny grew almost 4 whole inches since last time! wow!'
-
-
+      expect(returned_json['plants'][1]['snapshots'][0]['journal_entry']).to eq
+        'Sunny grew almost 4 whole inches since last time! wow!'
     end
   end
 
@@ -88,7 +85,7 @@ RSpec.describe Api::V1::PlantsController, type: :controller do
   #           }
   #       }
   #
-  #     expect { post :create, params: params }.to change(Superhero, :count).by(1)
+  #     expect { post :create, params: params }.to change(Plant, :count).by(1)
   #   end
   # end
 end
