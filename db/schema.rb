@@ -15,24 +15,15 @@ ActiveRecord::Schema.define(version: 20171219195535) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "gardens", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "description"
-    t.string "photo"
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "plants", force: :cascade do |t|
     t.string "name", null: false
     t.string "common_name"
     t.string "scientific_name"
     t.string "photo"
     t.string "light_requirement"
-    t.string "soil_type"
+    t.string "hardiness"
     t.string "water_requirement"
-    t.integer "garden_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

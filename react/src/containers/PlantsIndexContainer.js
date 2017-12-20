@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import GardenTile from '../components/GardenTile';
+import PlantTile from '../components/PlantTile';
 import { Route, IndexRoute, Router, browserHistory, Link, Redirect } from 'react-router';
 
-class GardenIndexContainer extends Component {
+class PlantsIndexContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +19,7 @@ class GardenIndexContainer extends Component {
   }
 
   componentDidMount () {
-  fetch('/api/v1/gardens')
+  fetch('/api/v1/plants')
   .then(response => {
     if (response.ok) {
       return response;
@@ -32,7 +32,7 @@ class GardenIndexContainer extends Component {
   .then(response => response.json())
   .then(body => {
     this.setState({
-      gardens: body.gardens
+      gardens: body.plants
     });
   })
   .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -41,7 +41,7 @@ class GardenIndexContainer extends Component {
   render () {
     let gardens = this.state.gardens.map(garden => {
       return (
-        <GardenTile
+        <PlantTile
           key={garden.id}
           id={garden.id}
           name={garden.name}
@@ -52,13 +52,15 @@ class GardenIndexContainer extends Component {
 
     return (
       <div>
-        <h1 id="title">Your Gardens</h1>
+        <h1 id='title'>Your Plants</h1>
+        <div className='rows'>
           {gardens}
-          <Link id="add" to={`/gardens/new`}>Add a Garden</Link>
+          <Link id='add' className='small-12 medium-6 large-4 text-center columns' to={`/plants/new`}>Add Plant</Link>
           <hr/>
+        </div>
       </div>
     );
   }
 }
 
-export default GardenIndexContainer;
+export default PlantsIndexContainer;

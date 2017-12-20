@@ -6,9 +6,9 @@ class CreatePlants < ActiveRecord::Migration[5.1]
       t.string :scientific_name
       t.string :photo
       t.string :light_requirement
-      t.string :soil_type
+      t.string :hardiness
       t.string :water_requirement
-      t.integer :garden_id, null: false
+      t.integer :user_id, null: false
 
       t.timestamps
     end
