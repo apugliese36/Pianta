@@ -32,7 +32,7 @@ class PlantsIndexContainer extends Component {
   .then(response => response.json())
   .then(body => {
     this.setState({
-      gardens: body
+      gardens: body.plants
     });
   })
   .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -52,10 +52,12 @@ class PlantsIndexContainer extends Component {
 
     return (
       <div>
-        <h1 id="title">Your Plants</h1>
+        <h1 id='title'>Your Plants</h1>
+        <div className='rows'>
           {gardens}
-          <Link id="add" to={`/plants/new`}>Add Plant</Link>
+          <Link id='add' className='small-12 medium-6 large-4 text-center columns' to={`/plants/new`}>Add Plant</Link>
           <hr/>
+        </div>
       </div>
     );
   }

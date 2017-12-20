@@ -3,15 +3,13 @@ import { browserHistory, Link } from 'react-router';
 
 const SuperheroTileComponent = props =>{
   return(
-    <div className="rows">
-      <div className="small-12 medium-4 columns">
+    <div>
+      <div className='small-12 medium-6 large-4 text-center columns height-align'>
         <Link to={`/plants/${props.id}`}>
-          <h1>{props.name}</h1>
+          <h3>{props.name}</h3>
           <img
-            id="photo"
+            className='indexPlant'
             src={`${props.photo}`}
-            height='225'
-            width='225'
           />
         </Link>
       </div>
