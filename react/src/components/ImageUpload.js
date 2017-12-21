@@ -11,7 +11,7 @@ class ImageUpload extends React.Component {
     let imagePreviewUrl = this.props.imagePreviewUrl;
     let $imagePreview = null;
     if (imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} />);
+      $imagePreview = (<img src={imagePreviewUrl} width='300' height='300' />);
     }
 
     return (
