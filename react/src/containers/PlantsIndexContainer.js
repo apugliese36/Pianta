@@ -37,6 +37,62 @@ class PlantsIndexContainer extends Component {
     this.closeModal = this.closeModal.bind(this);
     this.handleContinue = this.handleContinue.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    let formPayload = {
+      name: this.state.nickname,
+      common_name: this.state.plantName,
+      sunlight_needs: this.state.sunlightNeeds,
+      watering_needs: this.state.wateringNeeds,
+      photo: this.state.imagePreviewUrl,
+      user_id: 1
+    }
+    this.newPlant(formPayload)
+  }
+
+  newPlant(formPayload) {
+    fetch('/api/v1/plants', {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(formPayload),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.closeModal()
+      this.setState({
+        plants: body.plants
+      })
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  handleImageChange(e) {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      });
+    }
+    reader.readAsDataURL(file)
   }
 
   handleInputChange(event) {
@@ -56,7 +112,17 @@ class PlantsIndexContainer extends Component {
   }
 
   closeModal() {
-    this.setState( {modalIsOpen: false, continueClicked: false} );
+    this.setState({
+      modalIsOpen: false,
+      continueClicked: false,
+      plantName: '',
+      nickname: '',
+      birthdate: '',
+      sunlightNeeds: 'Sunny (Direct Sun)',
+      wateringNeeds: 'Daily',
+      file: '',
+      imagePreviewUrl: ''
+    });
   }
 
   handleClick(event) {
@@ -106,7 +172,11 @@ class PlantsIndexContainer extends Component {
 
     let form;
     if (this.state.continueClicked) {
-      form = <ImageUpload />
+      form =<ImageUpload
+              handleSubmit={this.handleSubmit}
+              handleImageChange={this.handleImageChange}
+              imagePreviewUrl={this.state.imagePreviewUrl}
+            />
     } else {
       form = <form>
               <label>
