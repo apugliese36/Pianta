@@ -10,23 +10,23 @@ class Api::V1::PlantsController < ApiController
   #   render json: Garden.find(params[:id])
   # end
 
-  # def create
-  #   superhero = Superhero.new(superhero_params)
-  #   if superhero.save
-  #     render json: superhero
-  #   else
-  #     render json:
-  #     { error: superhero.errors.full_messages },
-  #       status: :unprocessable_entity
-  #   end
-  # end
+  def create
+    plant = Plant.new(plant_params)
+    if plant.save
+      render json: Plant.all
+    else
+      render json:
+      { error: plant.errors.full_messages },
+        status: :unprocessable_entity
+    end
+  end
 
   # def destroy
   #   @superhero = Superhero.find(params[:id])
   #   @superhero.delete
   # end
 
-  # private
+  private
 
   # def require_permission
   #   @superhero = Superhero.find(params[:id])
@@ -35,13 +35,14 @@ class Api::V1::PlantsController < ApiController
   #   end
   # end
 
-  # def superhero_params
-  #   params.require(:superhero).permit(
-  #     :name,
-  #     :backstory,
-  #     :superpower,
-  #     :image_url,
-  #     :user_id
-  #   )
-  # end
+  def plant_params
+    params.require(:plant).permit(
+      :name,
+      :common_name,
+      :sunlight_needs,
+      :watering_needs,
+      :photo,
+      :user_id
+    )
+  end
 end
