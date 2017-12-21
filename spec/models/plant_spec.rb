@@ -11,11 +11,11 @@ RSpec.describe Plant, type: :model do
 
   it { should have_valid(:photo).when('photo.png', nil, '') }
 
-  it { should have_valid(:light_requirement).when('Full Sun', nil, '') }
+  it { should have_valid(:sunlight_needs).when('Full Sun', nil, '') }
 
   it { should have_valid(:hardiness).when('soil', nil, '') }
 
-  it { should have_valid(:water_requirement).when('Very-low-water', nil, '') }
+  it { should have_valid(:watering_needs).when('Very-low-water', nil, '') }
 
   it { should have_valid(:user_id).when(1) }
   it { should_not have_valid(:user_id).when(nil) }

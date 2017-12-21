@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PlantTile from '../components/PlantTile';
 import { Route, IndexRoute, Router, browserHistory, Link, Redirect } from 'react-router';
 import Modal from 'react-modal';
+import ImageUpload from '../components/ImageUpload';
 
 const customStyles = {
   content : {
@@ -25,7 +26,9 @@ class PlantsIndexContainer extends Component {
       nickname: '',
       birthdate: '',
       sunlightNeeds: 'Sunny (Direct Sun)',
-      wateringNeeds: 'Daily'
+      wateringNeeds: 'Daily',
+      file: '',
+      imagePreviewUrl: ''
 
     };
     this.handleClick = this.handleClick.bind(this);
@@ -103,13 +106,7 @@ class PlantsIndexContainer extends Component {
 
     let form;
     if (this.state.continueClicked) {
-      form = <form action="/upload" method="post" encType="multipart/form-data">
-                  <label>
-                    Upload A Photo Of Your Plant
-                    <input name="photo" type="file"/>
-                  </label>
-                  <input value="Submit" type="submit"/>
-              </form>
+      form = <ImageUpload />
     } else {
       form = <form>
               <label>
