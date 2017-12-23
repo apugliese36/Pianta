@@ -14,22 +14,120 @@
  *= require_self
  */
 
-.indexPlant {
-  /* min-width: 200px;
-  min-height: 200px; */
-  width: 300px;
-  height: 300px;
-  /* max-width: 300px;
-  max-height: 300px; */
-}
+ body {
+   font-family: 'Open Sans', sans-serif;
+ }
 
-/* .height-align {
-  min-height: 325px;
-  max-height: 350px;
-  height: 325px;
-} */
+ .plant-tile {
+   text-align: center;
+ }
 
-#add {
-  margin-top: 135px;
-  margin-bottom: 125px;
-}
+ .indexPlant {
+   /* min-width: 200px;
+   min-height: 200px; */
+   width: 300px;
+   height: 300px;
+   /* max-width: 300px;
+   max-height: 300px; */
+ }
+
+ /* .height-align {
+   min-height: 325px;
+   max-height: 350px;
+   height: 325px;
+ } */
+
+ #add {
+   margin-top: 185px;
+   margin-bottom: 150px;
+   margin-left: 151px;
+ }
+
+ .top-bar {
+   color: white;
+   background-color: #aad089
+ }
+
+ .verdant {
+   color: white;
+   background-color: #aad089;
+ }
+
+ .vertical-align {
+   margin-top: 15%;
+ }
+
+ .grey {
+   color: #ebebeb
+ }
+
+ div.top-bar a {
+   color: white;
+ }
+
+ a {
+   color: #555555;
+
+ }
+
+ a:hover {
+   color: #aad089;
+ }
+
+ /* Your Plants: */
+ #your-plants {
+   font-family: OpenSans-SemiBold;
+   color: #454545;
+   text-align: center;
+   margin: 0;
+ }
+
+ h3 {
+   font-size: 25px;
+   margin-top: 30px;
+   margin-bottom: 5px;
+ }
+
+ img {
+   border-radius: 3%;
+   margin-top: 1px;
+ }
+
+ .row {
+   margin: initial;
+   margin-left: initial;
+   margin-right: initial;
+ }
+
+ /* Container holding the image and the text */
+ .container {
+   position: relative;
+   color: white;
+   width: 300px;
+   height: 300px;
+   margin-right: 0;
+   margin-left: 5%;
+ }
+
+ /* Bottom left text */
+ .bottom-left {
+   position: absolute;
+   bottom: 8px;
+   left: 16px;
+   font-weight: bolder;
+   font-size: 20px;
+   text-shadow: 3px 3px 5px black;
+ }
+
+ .bottom-right {
+   position: absolute;
+   bottom: 3px;
+   right: 16px;
+ }
+
+ .journal-container {
+   position: relative;
+   background-color: #2b2e2e;
+   color: white;
+   height: calc(100vh - 53.75px);
+ }

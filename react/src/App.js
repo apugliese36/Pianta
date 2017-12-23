@@ -12,7 +12,7 @@ const App = props => {
           <IndexRoute component={PlantsIndexContainer}/>
           <Route path='/static_pages' component={PlantsIndexContainer}/>
           <Route path='/plants' component={PlantsIndexContainer}/>
-          <Route path='/plants/:id' component={PlantShowContiner}/>
+          <Route path='/plants/:id' component={PlantShowContainer}/>
         </Route>
       </Router>
     </div>

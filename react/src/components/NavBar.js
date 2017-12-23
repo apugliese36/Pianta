@@ -14,18 +14,15 @@ class NavBar extends Component{
       <div>
         <div className="top-bar">
           <div className="top-bar-left">
-            <ul className="dropdown menu">
-              <li className="menu-text">REACT ROUTER</li>
-              <li><Link to='/'>Home</Link></li>
-              <li><Link to='/greeting'>Greeting</Link></li>
-              <li><Link to='/goodbye'>Goodbye</Link></li>
-              <li><Link to='/customgreeting'>Custom Greeting</Link></li>
+            <ul className="menu verdant">
+              <li className="menu-text verdant">Pianta</li>
+              <li className="verdant"><Link to='/'>Home</Link></li>
+              <li className="verdant"><Link to='/greeting'>Setting</Link></li>
             </ul>
           </div>
           <div className="top-bar-right">
             <ul className="menu">
-              <li><a href="#">Sign up</a></li>
-              <li><a href="#">Sign In</a></li>
+              <li className="verdant"><a href="#">Sign Out</a></li>
             </ul>
           </div>
         </div>
