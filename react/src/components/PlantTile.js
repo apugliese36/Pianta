@@ -1,10 +1,9 @@
 import React from 'react';
 import { browserHistory, Link } from 'react-router';
 
-const SuperheroTileComponent = props =>{
+const PlantTileComponent = props =>{
   return(
-    <div>
-      <div className='small-12 medium-6 large-4 text-center columns height-align'>
+      <div className='small-12 medium-6 large-4 text-center column'>
         <Link to={`/plants/${props.id}`}>
           <h3>{props.name}</h3>
           <img
@@ -13,8 +12,7 @@ const SuperheroTileComponent = props =>{
           />
         </Link>
       </div>
-    </div>
   );
 };
 
-export default SuperheroTileComponent;
+export default PlantTileComponent;

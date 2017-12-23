@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+body {
+  font-family: 'Open Sans', sans-serif;
+}
 
 .indexPlant {
   /* min-width: 200px;
@@ -30,6 +33,57 @@
 } */
 
 #add {
-  margin-top: 135px;
-  margin-bottom: 125px;
+  margin-top: 185px;
+  margin-bottom: 150px;
+  margin-left: 151px;
+}
+
+.top-bar {
+  color: white;
+  background-color: #aad089
+}
+
+.verdant {
+  color: white;
+  background-color: #aad089;
+}
+
+.vertical-align {
+  margin-top: 25%;
+}
+
+.grey {
+  color: #ebebeb
+}
+
+div.top-bar a {
+  color: white;
+}
+
+a {
+  color: #555555;
+
+}
+
+a:hover {
+  color: #aad089;
+}
+
+/* Your Plants: */
+#your-plants {
+  font-family: OpenSans-SemiBold;
+  color: #454545;
+  text-align: center;
+  margin: 0;
+}
+
+h3 {
+  font-size: 25px;
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+img {
+  border-radius: 10%;
+  margin-top: 1px;
 }
