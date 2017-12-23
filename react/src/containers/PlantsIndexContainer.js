@@ -221,12 +221,12 @@ class PlantsIndexContainer extends Component {
         <h1 id='your-plants'>Your Plants</h1>
         <div className='rows'>
           {plants}
-            <button
-              id='add'
-              onClick={this.openModal}
-            >
-              Add Plant
-            </button>
+          <button
+            id='add'
+            onClick={this.openModal}
+          >
+            Add Plant
+          </button>
           <Modal
             isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
