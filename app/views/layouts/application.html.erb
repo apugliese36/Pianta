@@ -2,11 +2,13 @@
 <html>
   <head>
     <title>Pianta</title>
-    <%= csrf_meta_tags %>
+    <script src="https://use.fontawesome.com/5fc353c902.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css">
+    <!-- <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title> -->
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body>

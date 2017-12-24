@@ -14,9 +14,11 @@ const TimelineContainer = props => {
   })
 
   return(
-    <div>
+    <div className='medium-4 column journal-container'>
       <h3>{props.numberOfDays} days in your care</h3>
+      <hr/>
       {snapshots}
+      <div className='bottom-right'>New Entry</div>
     </div>
   );
 };
