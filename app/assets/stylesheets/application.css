@@ -87,17 +87,17 @@ img {
 .container {
   position: relative;
   color: white;
-  /* width: 300px;
-  height: 300px; */
-  margin-right: none;
-  margin-left: 5%;
+  text-align: center;
 }
 
 /* Bottom left text */
 .bottom-left {
   position: absolute;
-  bottom: 8px;
-  left: 25%;
+  /* bottom: 8px;
+  right: 66px; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: white;
   font-weight: bolder;
   font-size: 20px;
@@ -115,4 +115,9 @@ img {
   background-color: #2b2e2e;
   color: white;
   height: calc(100vh - 53.75px);
+}
+
+.menu {
+  background-color: #aad089;
+  color: #aad089;
 }
