@@ -3,11 +3,11 @@ class PlantSerializer < ActiveModel::Serializer
              :name,
              :common_name,
              :scientific_name,
-             :photo,
              :sunlight_needs,
              :hardiness,
              :watering_needs,
              :birthdate,
              :user_id,
+             :photo,
              :snapshots
 end

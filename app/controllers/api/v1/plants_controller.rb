@@ -6,9 +6,9 @@ class Api::V1::PlantsController < ApiController
     render json: plants
   end
 
-  # def show
-  #   render json: Garden.find(params[:id])
-  # end
+  def show
+    render json: Plant.find(params[:id])
+  end
 
   def create
     plant = Plant.new(plant_params)
@@ -42,6 +42,7 @@ class Api::V1::PlantsController < ApiController
       :sunlight_needs,
       :watering_needs,
       :photo,
+      :birthdate,
       :user_id
     )
   end

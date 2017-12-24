@@ -12,122 +12,107 @@
  *
  *= require_tree .
  *= require_self
+
  */
+body {
+  font-family: 'Open Sans', sans-serif;
+}
 
- body {
-   font-family: 'Open Sans', sans-serif;
- }
+.indexPlant {
+  width: 300px;
+  height: 300px;
+}
 
- .plant-tile {
-   text-align: center;
- }
+#add {
+  margin-top: 185px;
+  margin-bottom: 150px;
+  margin-left: 151px;
+}
 
- .indexPlant {
-   /* min-width: 200px;
-   min-height: 200px; */
-   width: 300px;
-   height: 300px;
-   /* max-width: 300px;
-   max-height: 300px; */
- }
+.top-bar {
+  color: white;
+  background-color: #aad089
+}
 
- /* .height-align {
-   min-height: 325px;
-   max-height: 350px;
-   height: 325px;
- } */
+.verdant {
+  color: white;
+  background-color: #aad089;
+}
 
- #add {
-   margin-top: 185px;
-   margin-bottom: 150px;
-   margin-left: 151px;
- }
+.vertical-align {
+  margin-top: 15%;
+}
 
- .top-bar {
-   color: white;
-   background-color: #aad089
- }
+.grey {
+  color: #ebebeb
+}
 
- .verdant {
-   color: white;
-   background-color: #aad089;
- }
+div.top-bar a {
+  color: white;
+}
 
- .vertical-align {
-   margin-top: 15%;
- }
+a {
+  color: #555555;
 
- .grey {
-   color: #ebebeb
- }
+}
 
- div.top-bar a {
-   color: white;
- }
+a:hover {
+  color: #aad089;
+}
 
- a {
-   color: #555555;
+/* Your Plants: */
+#your-plants {
+  font-family: OpenSans-SemiBold;
+  color: #454545;
+  text-align: center;
+  margin: 0;
+}
 
- }
+h3 {
+  font-size: 25px;
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
 
- a:hover {
-   color: #aad089;
- }
+img {
+  border-radius: 3%;
+  margin-top: 1px;
+}
 
- /* Your Plants: */
- #your-plants {
-   font-family: OpenSans-SemiBold;
-   color: #454545;
-   text-align: center;
-   margin: 0;
- }
+.row {
+  max-width: none;
+}
 
- h3 {
-   font-size: 25px;
-   margin-top: 30px;
-   margin-bottom: 5px;
- }
+/* Container holding the image and the text */
+.container {
+  position: relative;
+  color: white;
+  /* width: 300px;
+  height: 300px; */
+  margin-right: none;
+  margin-left: 5%;
+}
 
- img {
-   border-radius: 3%;
-   margin-top: 1px;
- }
+/* Bottom left text */
+.bottom-left {
+  position: absolute;
+  bottom: 8px;
+  left: 25%;
+  color: white;
+  font-weight: bolder;
+  font-size: 20px;
+  text-shadow: 3px 3px 5px black;
+}
 
- .row {
-   margin: initial;
-   margin-left: initial;
-   margin-right: initial;
- }
+.bottom-right {
+  position: absolute;
+  bottom: 3px;
+  right: 16px;
+}
 
- /* Container holding the image and the text */
- .container {
-   position: relative;
-   color: white;
-   width: 300px;
-   height: 300px;
-   margin-right: 0;
-   margin-left: 5%;
- }
-
- /* Bottom left text */
- .bottom-left {
-   position: absolute;
-   bottom: 8px;
-   left: 16px;
-   font-weight: bolder;
-   font-size: 20px;
-   text-shadow: 3px 3px 5px black;
- }
-
- .bottom-right {
-   position: absolute;
-   bottom: 3px;
-   right: 16px;
- }
-
- .journal-container {
-   position: relative;
-   background-color: #2b2e2e;
-   color: white;
-   height: calc(100vh - 53.75px);
- }
+.journal-container {
+  position: relative;
+  background-color: #2b2e2e;
+  color: white;
+  height: calc(100vh - 53.75px);
+}

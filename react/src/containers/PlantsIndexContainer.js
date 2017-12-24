@@ -49,6 +49,7 @@ class PlantsIndexContainer extends Component {
       sunlight_needs: this.state.sunlightNeeds,
       watering_needs: this.state.wateringNeeds,
       photo: this.state.imagePreviewUrl,
+      birthdate: this.state.birthdate,
       user_id: 1
     }
     this.newPlant(formPayload)
@@ -185,11 +186,11 @@ class PlantsIndexContainer extends Component {
               </label>
               <label>
                 Plant Nickname
-                <input value={this.state.nickname}onChange={this.handleInputChange} name='nickname' type='text' placeholder='What do you call this plant?' />
+                <input value={this.state.nickname} onChange={this.handleInputChange} name='nickname' type='text' placeholder='What do you call this plant?' />
               </label>
               <label>
                 When Did You Start Caring For This Plant?
-                <input value={this.state.birthdate}onChange={this.handleInputChange} name='birthdate' type='date' />
+                <input value={this.state.birthdate} onChange={this.handleInputChange} name='birthdate' type='date' />
               </label>
               <label>
                 Sunlight Needs
@@ -217,13 +218,12 @@ class PlantsIndexContainer extends Component {
 
     return (
       <div>
-        <h1 id='title'>Your Plants</h1>
+        <h1 id='your-plants'>Your Plants</h1>
         <div className='rows'>
           {plants}
           <button
             id='add'
             onClick={this.openModal}
-            className='small-12 medium-6 large-4 text-center columns'
           >
             Add Plant
           </button>
