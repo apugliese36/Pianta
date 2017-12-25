@@ -6,9 +6,12 @@ const TimelineContainer = props => {
   let snapshots = props.snapshots.map(snapshot => {
     return(
       <SnapshotTile
+        key={snapshot.id}
+        id={snapshot.id}
         journalEntry={snapshot.journal_entry}
         photo={snapshot.photo}
         date={snapshot.created_at}
+        snapshotClick={props.snapshotClick}
       />
     )
   })

@@ -8,10 +8,10 @@ const SnapshotTile = props =>{
   dateMs = Date.parse(date)
   dateMonthDay = strftime('%b %o', new Date(dateMs))
   return(
-    <div>
-      <div>{dateMonthDay}</div>
-      <div>{props.journalEntry}</div>
-      <img src={props.photo} width='134' height='134'/>
+    <div onClick={props.snapshotClick} id={props.id}>
+      <div id={props.id}>{dateMonthDay}</div>
+      <div id={props.id}>{props.journalEntry}</div>
+      <img id={props.id} src={props.photo} width='134' height='134'/>
     </div>
   );
 };
