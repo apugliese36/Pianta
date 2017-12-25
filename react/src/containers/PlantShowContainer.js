@@ -2,6 +2,19 @@ import React from 'react';
 import { Router, browserHistory } from 'react-router';
 import TimelineContainer from './TimelineContainer'
 let strftime = require('strftime')
+import Modal from 'react-modal';
+import ImageUpload from '../components/ImageUpload';
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 
 class PlantShowContainer extends React.Component {
   constructor(props) {
@@ -9,10 +22,22 @@ class PlantShowContainer extends React.Component {
     this.state = {
       plant: [],
       snapshots: [],
-      selectedSnapshot: {}
+      selectedSnapshot: {},
+      modalIsOpen: false,
+      continueClicked: false,
+      journalEntry: '',
+      file: '',
+      imagePreviewUrl: ''
     };
     this.snapshotClick = this.snapshotClick.bind(this);
     this.selectedSnapshot = this.selectedSnapshot.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.handleContinue = this.handleContinue.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount () {
@@ -37,6 +62,63 @@ class PlantShowContainer extends React.Component {
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    let formPayload = {
+      journal_entry: this.state.nickname,
+      photo: this.state.imagePreviewUrl,
+      plant_id: this.props.params.id
+    }
+  }
+
+  handleImageChange(e) {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      });
+    }
+    reader.readAsDataURL(file)
+  }
+
+  handleInputChange(event) {
+    let value = event.target.value;
+    let name = event.target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  openModal() {
+    this.setState( {modalIsOpen: true} );
+  }
+
+  afterOpenModal() {
+  }
+
+  closeModal() {
+    this.setState({
+      modalIsOpen: false,
+      continueClicked: false,
+      journalEntry: '',
+      file: '',
+      imagePreviewUrl: ''
+    });
+  }
+
+  handleContinue(event) {
+    event.preventDefault();
+    this.setState({
+      continueClicked: true
+    })
   }
 
   snapshotClick(event) {
@@ -84,6 +166,23 @@ class PlantShowContainer extends React.Component {
       }
     }
 
+    let form;
+    if (this.state.continueClicked) {
+      form =<ImageUpload
+              handleSubmit={this.handleSubmit}
+              handleImageChange={this.handleImageChange}
+              imagePreviewUrl={this.state.imagePreviewUrl}
+            />
+    } else {
+      form = <form>
+              <label>
+                Journal Entry
+                <textarea value={this.state.journalEntry} onChange={this.handleInputChange} name='journalEntry' type='text'/>
+              </label>
+              <button onClick={this.handleContinue}>Continue</button>
+            </form>
+    }
+
     return(
       <div className='row'>
         <TimelineContainer
@@ -92,6 +191,7 @@ class PlantShowContainer extends React.Component {
           snapshotClick={this.snapshotClick}
           numberOfDays={numberOfDays}
           birthdate={birthdate}
+          openModal={this.openModal}
         />
 
         <div className='medium-4 column'>
@@ -110,6 +210,22 @@ class PlantShowContainer extends React.Component {
           <br/>
           {rightColumn}
         </div>
+
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Add New Journal Entry"
+        >
+          <span>
+            <h2 ref={subtitle => this.subtitle = subtitle}>Add Journal Entry</h2>
+          </span>
+          <span>
+            <button onClick={this.closeModal}>close</button>
+          </span>
+          {form}
+        </Modal>
       </div>
     );
   }

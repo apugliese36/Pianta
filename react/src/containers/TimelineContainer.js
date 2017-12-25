@@ -21,7 +21,7 @@ const TimelineContainer = props => {
       <h3>{props.numberOfDays} days in your care</h3>
       <hr/>
       {snapshots}
-      <div className='bottom-right'>New Entry</div>
+      <div className='bottom-right' onClick={props.openModal}>New Entry</div>
     </div>
   );
 };
