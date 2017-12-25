@@ -60,15 +60,27 @@ class PlantShowContainer extends React.Component {
 
     birthdateMonthDayYear = strftime('%b %o, %Y', new Date(birthdate))
 
-    // let selectedSnapshotWeekdayMonthDayYear;
-    // selectedSnapshotWeekdayMonthDayYear = strftime('%b %o, %Y', new Date(this.selectedSnapshot.created_at))
-    let centerColumn, rightColumn;
+    let centerColumn, rightColumn, selectedSnapshotWeekdayMonthDayYear, snapshotDate, snapshotDayNumber;
     if (this.state.selectedSnapshot) {
+      snapshotDate = new Date(this.state.selectedSnapshot.created_at)
+      selectedSnapshotWeekdayMonthDayYear = strftime('%A, %b %o, %Y', snapshotDate)
+      snapshotDayNumber = Math.ceil((snapshotDate - birthdate) / 8.64e7)
       if (this.state.selectedSnapshot.photo) {
         centerColumn = <img className="center-image" src={this.state.selectedSnapshot.photo} />
-        rightColumn = <div>{this.state.selectedSnapshot.journal_entry}</div>
+        rightColumn = <div>
+                        <div>{`Day ${snapshotDayNumber}`}</div>
+                        <div>{selectedSnapshotWeekdayMonthDayYear}</div>
+                        <div>{this.state.selectedSnapshot.journal_entry}</div>
+                        <hr/>
+                      </div>
       } else {
-        centerColumn = <div>{this.state.selectedSnapshot.journal_entry}</div>
+        centerColumn =
+                      <div>
+                        <div>{`Day ${snapshotDayNumber}`}</div>
+                        <div>{selectedSnapshotWeekdayMonthDayYear}</div>
+                        <div>{this.state.selectedSnapshot.journal_entry}</div>
+                        <hr/>
+                      </div>
       }
     }
 
