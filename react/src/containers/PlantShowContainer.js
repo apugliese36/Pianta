@@ -63,11 +63,13 @@ class PlantShowContainer extends React.Component {
     // let selectedSnapshotWeekdayMonthDayYear;
     // selectedSnapshotWeekdayMonthDayYear = strftime('%b %o, %Y', new Date(this.selectedSnapshot.created_at))
     let centerColumn, rightColumn;
-    if (this.state.selectedSnapshot.photo) {
-      centerColumn = <img className="center-image" src={this.state.selectedSnapshot.photo} />
-      rightColumn = <div>{this.state.selectedSnapshot.journal_entry}</div>
-    } else {
-      centerColumn = <div>{this.state.selectedSnapshot.journal_entry}</div>
+    if (this.state.selectedSnapshot) {
+      if (this.state.selectedSnapshot.photo) {
+        centerColumn = <img className="center-image" src={this.state.selectedSnapshot.photo} />
+        rightColumn = <div>{this.state.selectedSnapshot.journal_entry}</div>
+      } else {
+        centerColumn = <div>{this.state.selectedSnapshot.journal_entry}</div>
+      }
     }
 
     return(
