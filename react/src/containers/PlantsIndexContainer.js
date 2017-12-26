@@ -28,7 +28,7 @@ class PlantsIndexContainer extends Component {
       sunlightNeeds: 'Sunny (Direct Sun)',
       wateringNeeds: 'Daily',
       file: '',
-      imagePreviewUrl: ''
+      imagePreviewUrl: null
 
     };
     this.handleClick = this.handleClick.bind(this);
