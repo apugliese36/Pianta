@@ -27,7 +27,7 @@ class PlantShowContainer extends React.Component {
       continueClicked: false,
       journalEntry: '',
       file: '',
-      imagePreviewUrl: ''
+      imagePreviewUrl: null
     };
     this.snapshotClick = this.snapshotClick.bind(this);
     this.selectedSnapshot = this.selectedSnapshot.bind(this);
@@ -67,10 +67,37 @@ class PlantShowContainer extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let formPayload = {
-      journal_entry: this.state.nickname,
+      journal_entry: this.state.journalEntry,
       photo: this.state.imagePreviewUrl,
-      plant_id: this.props.params.id
+      plant_id: +this.props.params.id
     }
+    this.newSnapshot(formPayload);
+  }
+
+  newSnapshot(formPayload) {
+    fetch('/api/v1/snapshots', {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(formPayload),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.closeModal()
+      this.setState({
+        snapshots: body
+      })
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   handleImageChange(e) {
