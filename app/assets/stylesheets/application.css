@@ -121,3 +121,8 @@ img {
   background-color: #aad089;
   color: #aad089;
 }
+
+.center-image {
+  height: auto;
+  width: auto;
+}
