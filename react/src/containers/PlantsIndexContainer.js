@@ -122,7 +122,7 @@ class PlantsIndexContainer extends Component {
       sunlightNeeds: 'Sunny (Direct Sun)',
       wateringNeeds: 'Daily',
       file: '',
-      imagePreviewUrl: ''
+      imagePreviewUrl: null
     });
   }
 

@@ -137,7 +137,7 @@ class PlantShowContainer extends React.Component {
       continueClicked: false,
       journalEntry: '',
       file: '',
-      imagePreviewUrl: ''
+      imagePreviewUrl: null
     });
   }
 
