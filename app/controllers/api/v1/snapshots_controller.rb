@@ -3,7 +3,7 @@ class Api::V1::SnapshotsController < ApiController
 
   def index
     snapshots = Snapshot.all.order(:created_at).reverse
-    render json: snapshots
+    render json: { snapshots: snapshots }
   end
 
   def create
