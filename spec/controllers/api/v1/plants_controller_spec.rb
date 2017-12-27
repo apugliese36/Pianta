@@ -28,7 +28,7 @@ RSpec.describe Api::V1::PlantsController, type: :controller do
   end
 
   describe 'GET#index' do
-    it 'returns a list of all gardens' do
+    it 'returns a list of all plants' do
       get :index
       returned_json = JSON.parse(response.body)
 
@@ -54,39 +54,37 @@ RSpec.describe Api::V1::PlantsController, type: :controller do
     end
   end
 
-  # describe 'GET#show' do
-  #   it 'returns a single hero' do
-  #
-  #     get :show, params: { id: magneto.id }
-  #     returned_json = JSON.parse(response.body)
-  #
-  #     expect(response.status).to eq 200
-  #     expect(response.content_type).to eq('application/json')
-  #
-  #     expect(returned_json['superhero']['name']).to eq 'Magneto'
-  #     expect(returned_json['superhero']['superpower']).to eq 'BENDS METAL'
-  #     expect(returned_json['superhero']['backstory']).to eq 'so sad'
-  #     expect(returned_json['superhero']['image_url']).to eq 'magneto.com'
-  #   end
-  # end
+  describe 'GET#show' do
+    it 'returns a single plant' do
 
-  # describe 'POST#create' do
-  #   it 'posts a single hero' do
-  #     sign_in kjoya
-  #
-  #     params =
-  #       {
-  #         superhero:
-  #           {
-  #             name: 'daredevil',
-  #             backstory: 'blind and stuff',
-  #             superpower: 'ninja skills',
-  #             image_url: 'image.png',
-  #             user_id: kjoya.id
-  #           }
-  #       }
-  #
-  #     expect { post :create, params: params }.to change(Plant, :count).by(1)
-  #   end
-  # end
+      get :show, params: { id: sunflower.id }
+      returned_json = JSON.parse(response.body)
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq('application/json')
+
+      expect(returned_json['plant']['name']).to eq 'Sunny'
+      expect(returned_json['plant']['common_name']).to eq 'sunflower'
+      expect(returned_json['plant']['photo']).to eq 'sunflower.jpeg'
+      expect(returned_json['plant']['user_id']).to eq 1
+      expect(returned_json['plant']['snapshots'].size).to eq 1
+    end
+  end
+
+  describe 'POST#create' do
+    it 'posts a single plant' do
+      params =
+        {
+          plant:
+            {
+              name: 'cutie',
+              common_name: 'cactus',
+              photo: 'image.png',
+              user_id: 1
+            }
+        }
+
+      expect { post :create, params: params }.to change(Plant, :count).by(1)
+    end
+  end
 end

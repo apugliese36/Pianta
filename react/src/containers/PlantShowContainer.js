@@ -57,7 +57,7 @@ class PlantShowContainer extends React.Component {
     .then(body => {
       this.setState({
         plant: body.plant,
-        snapshots: body.plant.snapshots,
+        snapshots: body.plant.snapshots.reverse(),
         selectedSnapshot: body.plant.snapshots[0]
       });
     })
