@@ -2,11 +2,17 @@ require 'rails_helper'
 require 'spec_helper'
 
 RSpec.describe Api::V1::SnapshotsController, type: :controller do
+  let!(:user) do
+    User.create(
+      first_name: 'Ray'
+    )
+  end
+
   let!(:zucchini) do
     Plant.create(
       name: 'Zucchini Lullini',
       common_name: 'zucchini',
-      user_id: 1,
+      user_id: user.id,
       photo: 'zucchini.jpeg'
     )
   end
@@ -15,7 +21,7 @@ RSpec.describe Api::V1::SnapshotsController, type: :controller do
     Plant.create(
       name: 'Sunny',
       common_name: 'sunflower',
-      user_id: 1,
+      user_id: user.id,
       photo: 'sunflower.jpeg'
     )
   end
