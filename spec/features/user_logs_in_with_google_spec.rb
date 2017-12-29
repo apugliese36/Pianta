@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.feature 'user logs in' do
   scenario 'using google oauth2' do
@@ -6,29 +7,6 @@ RSpec.feature 'user logs in' do
     visit root_path
     expect(page).to have_link('Sign in with Google')
     click_link 'Sign in with Google'
-    # expect(page).to have_content('Jesse Spevack')
-    # expect(page).to have_link('Logout')
+    expect(page).to_not have_link('Sign in with Google')
   end
-end
-
-def stub_omniauth
-  OmniAuth.config.test_mode = true
-
-  OmniAuth.config.mock_auth[:google] =
-    OmniAuth::AuthHash.new(
-      {
-        provider: 'google',
-        uid: '12345678910',
-        info: {
-          email: 'jesse@mountainmantechnologies.com',
-          first_name: 'Jesse',
-          last_name: 'Spevack'
-        },
-        credentials: {
-          token: 'abcdefg12345',
-          refresh_token: '12345abcdefg',
-          expires_at: DateTime.now
-        }
-      }
-    )
 end

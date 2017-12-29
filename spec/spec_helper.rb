@@ -35,6 +35,28 @@ SimpleCov.start do
   add_filter 'app/serializers'
 end
 
+def stub_omniauth
+  OmniAuth.config.test_mode = true
+
+  OmniAuth.config.mock_auth[:google] =
+    OmniAuth::AuthHash.new(
+      {
+        provider: 'google',
+        uid: '12345678910',
+        info: {
+          email: 'jesse@mountainmantechnologies.com',
+          first_name: 'Jesse',
+          last_name: 'Spevack'
+        },
+        credentials: {
+          token: 'abcdefg12345',
+          refresh_token: '12345abcdefg',
+          expires_at: DateTime.now
+        }
+      }
+    )
+end
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
