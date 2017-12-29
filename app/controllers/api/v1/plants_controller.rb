@@ -8,7 +8,13 @@ class Api::V1::PlantsController < ApiController
 
   def show
     plant = Plant.find(params[:id])
-    render json: plant
+    if plant.user_id == current_user.id
+      render json: plant
+    else
+      render json:
+      { error: 'Plant does not exist' },
+        status: 404
+    end
   end
 
   def create
