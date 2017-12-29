@@ -1,19 +1,20 @@
 class Api::V1::PlantsController < ApiController
-  skip_before_action :verify_authenticity_token, only: [:create, :destroy]
+  skip_before_action :verify_authenticity_token, only: [:index, :create, :destroy]
 
   def index
-    plants = Plant.all
-    render json: plants
+    plants = Plant.where(user: current_user)
+    render json: { plants: plants, current_user: current_user }
   end
 
   def show
-    render json: Plant.find(params[:id])
+    plant = Plant.find(params[:id])
+    render json: plant
   end
 
   def create
     plant = Plant.new(plant_params)
     if plant.save
-      render json: Plant.all
+      render json: Plant.where(user: current_user)
     else
       render json:
       { error: plant.errors.full_messages },

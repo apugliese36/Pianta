@@ -22,7 +22,7 @@ class NavBar extends Component{
           </div>
           <div className="top-bar-right">
             <ul className="menu">
-              <li className="verdant"><a href="#">Sign Out</a></li>
+              <li className="verdant"><a href="/logout">Sign Out</a></li>
             </ul>
           </div>
         </div>
