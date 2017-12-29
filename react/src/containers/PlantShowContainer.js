@@ -27,7 +27,8 @@ class PlantShowContainer extends React.Component {
       continueClicked: false,
       journalEntry: '',
       file: '',
-      imagePreviewUrl: null
+      imagePreviewUrl: null,
+      error: false
     };
     this.snapshotClick = this.snapshotClick.bind(this);
     this.selectedSnapshot = this.selectedSnapshot.bind(this);
@@ -45,9 +46,11 @@ class PlantShowContainer extends React.Component {
       credentials: 'same-origin'
     })
     .then(response => {
+      debugger;
       if (response.ok) {
         return response;
       } else {
+        this.setState({ error: true })
         let errorMessage = `${response.status} (${response.statusText})`,
         error = new Error(errorMessage);
         throw(error);
@@ -210,8 +213,14 @@ class PlantShowContainer extends React.Component {
             </form>
     }
 
+    let plantNotFound;
+    if (this.state.error) {
+      plantNotFound = <h1>Plant does not exist</h1>
+    }
+
     return(
       <div className='row'>
+        {plantNotFound}
         <TimelineContainer
           plant={this.state.plant}
           snapshots={this.state.snapshots}

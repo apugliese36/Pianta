@@ -28,7 +28,8 @@ class PlantsIndexContainer extends Component {
       sunlightNeeds: 'Sunny (Direct Sun)',
       wateringNeeds: 'Daily',
       file: '',
-      imagePreviewUrl: null
+      imagePreviewUrl: null,
+      current_user: ''
 
     };
     this.handleClick = this.handleClick.bind(this);
@@ -50,7 +51,7 @@ class PlantsIndexContainer extends Component {
       watering_needs: this.state.wateringNeeds,
       photo: this.state.imagePreviewUrl,
       birthdate: this.state.birthdate,
-      user_id: 1
+      user_id: this.state.current_user.id
     }
     this.newPlant(formPayload)
   }
@@ -140,7 +141,9 @@ class PlantsIndexContainer extends Component {
   }
 
   componentDidMount () {
-  fetch('/api/v1/plants')
+  fetch('/api/v1/plants', {
+    credentials: 'same-origin'
+  })
   .then(response => {
     if (response.ok) {
       return response;
@@ -153,7 +156,8 @@ class PlantsIndexContainer extends Component {
   .then(response => response.json())
   .then(body => {
     this.setState({
-      plants: body.plants
+      plants: body.plants,
+      current_user: body.current_user
     });
   })
   .catch(error => console.error(`Error in fetch: ${error.message}`));

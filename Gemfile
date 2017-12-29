@@ -1,15 +1,19 @@
 source 'https://rubygems.org/'
 
 gem 'active_model_serializers'
+gem 'figaro'
 gem 'foundation-rails'
-gem 'rails', '~> 5.1.2'
+gem 'omniauth-google-oauth2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
+gem 'rails', '~> 5.1.2'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 
 group :test do
+  gem 'capybara'
   gem 'coveralls', require: false
+  gem 'rspec-rails', '~> 3.5'
 end
 
 group :development do

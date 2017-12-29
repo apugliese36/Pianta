@@ -10,5 +10,7 @@ Rails.application.routes.draw do
 
   resources :static_pages, only: [:index]
 
-  get '/*all', to: 'static_pages#index'
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'logout', to: 'sessions#destroy'
+  get '/*all', to: 'sign_in#index'
 end

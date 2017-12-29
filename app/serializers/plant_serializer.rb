@@ -8,6 +8,11 @@ class PlantSerializer < ActiveModel::Serializer
              :watering_needs,
              :birthdate,
              :user_id,
+             :current_user,
              :photo,
              :snapshots
+
+  def current_user
+    scope.current_user
+  end
 end

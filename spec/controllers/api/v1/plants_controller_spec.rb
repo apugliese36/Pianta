@@ -2,11 +2,17 @@ require 'rails_helper'
 require 'spec_helper'
 
 RSpec.describe Api::V1::PlantsController, type: :controller do
+  let!(:user) do
+    User.create(
+      first_name: 'Ray'
+    )
+  end
+
   let!(:zucchini) do
     Plant.create(
       name: 'Zucchini Lullini',
       common_name: 'zucchini',
-      user_id: 1,
+      user_id: user.id,
       photo: 'zucchini.jpeg'
     )
   end
@@ -15,7 +21,7 @@ RSpec.describe Api::V1::PlantsController, type: :controller do
     Plant.create(
       name: 'Sunny',
       common_name: 'sunflower',
-      user_id: 1,
+      user_id: user.id,
       photo: 'sunflower.jpeg'
     )
   end
@@ -25,6 +31,10 @@ RSpec.describe Api::V1::PlantsController, type: :controller do
       journal_entry: 'Sunny grew almost 4 whole inches since last time! wow!',
       plant: sunflower
     )
+  end
+
+  before do
+    allow(controller).to receive(:current_user) { user }
   end
 
   describe 'GET#index' do
@@ -39,18 +49,13 @@ RSpec.describe Api::V1::PlantsController, type: :controller do
       expect(returned_json['plants'][0]['name']).to eq 'Zucchini Lullini'
       expect(returned_json['plants'][0]['common_name']).to eq 'zucchini'
       expect(returned_json['plants'][0]['photo']).to eq 'zucchini.jpeg'
-      expect(returned_json['plants'][0]['user_id']).to eq 1
-      expect(returned_json['plants'][0]['snapshots'].size).to eq 0
+      expect(returned_json['plants'][0]['user_id']).to eq user.id
 
       expect(returned_json['plants'].length).to eq 2
       expect(returned_json['plants'][1]['name']).to eq 'Sunny'
       expect(returned_json['plants'][1]['common_name']).to eq 'sunflower'
       expect(returned_json['plants'][1]['photo']).to eq 'sunflower.jpeg'
-      expect(returned_json['plants'][1]['user_id']).to eq 1
-      expect(returned_json['plants'][1]['snapshots'].size).to eq 1
-      expect(
-              returned_json['plants'][1]['snapshots'][0]['journal_entry']
-            ).to eq 'Sunny grew almost 4 whole inches since last time! wow!'
+      expect(returned_json['plants'][1]['user_id']).to eq user.id
     end
   end
 
@@ -66,7 +71,7 @@ RSpec.describe Api::V1::PlantsController, type: :controller do
       expect(returned_json['plant']['name']).to eq 'Sunny'
       expect(returned_json['plant']['common_name']).to eq 'sunflower'
       expect(returned_json['plant']['photo']).to eq 'sunflower.jpeg'
-      expect(returned_json['plant']['user_id']).to eq 1
+      expect(returned_json['plant']['user_id']).to eq user.id
       expect(returned_json['plant']['snapshots'].size).to eq 1
     end
   end
@@ -80,7 +85,7 @@ RSpec.describe Api::V1::PlantsController, type: :controller do
               name: 'cutie',
               common_name: 'cactus',
               photo: 'image.png',
-              user_id: 1
+              user_id: user.id
             }
         }
 
