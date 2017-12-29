@@ -16,17 +16,17 @@ def stub_omniauth
 
   OmniAuth.config.mock_auth[:google] =
 OmniAuth::AuthHash.new({
-    provider: "google",
-    uid: "12345678910",
+    provider: 'google',
+    uid: '12345678910',
     info: {
-      email: "jesse@mountainmantechnologies.com",
-      first_name: "Jesse",
-      last_name: "Spevack"
+      email: 'jesse@mountainmantechnologies.com',
+      first_name: 'Jesse',
+      last_name: 'Spevack'
     },
     credentials: {
-      token: "abcdefg12345",
-      refresh_token: "12345abcdefg",
-      expires_at: DateTime.now,
+      token: 'abcdefg12345',
+      refresh_token: '12345abcdefg',
+      expires_at: DateTime.now
     }
   })
 end
