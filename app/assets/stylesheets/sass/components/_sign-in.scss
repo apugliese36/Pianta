@@ -1,0 +1,66 @@
+@import "../base/variables";
+@import "../base/mixins";
+@import "../base/reset";
+
+.vertical-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+
+  .vertical-align {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.welcome-to {
+  font-size: 36px;
+  color: $beigegray;
+  font-weight: 600;
+}
+
+.info {
+  color: white;
+  background-color: $gray;
+  background-image: url('/assets/Side_Banner.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-left: 35px;
+  padding-top: 25px;
+  padding-right: 40px;
+}
+
+.sign-in-top-left-logo {
+  margin-bottom: 70px;
+}
+
+.what-is {
+  font-size: 34px;
+  font-weight: bold;
+}
+
+.feature {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.row-container {
+  position: relative;
+
+  .row-vertical-center {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
+.details {
+  font-size: 14px;
+}
