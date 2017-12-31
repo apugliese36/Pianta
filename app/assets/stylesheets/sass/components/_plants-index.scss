@@ -1,0 +1,39 @@
+@import "../base/variables";
+@import "../base/mixins";
+@import "../base/reset";
+
+.indexPlant {
+  width: 200px;
+  height: 200px;
+  margin-top: 1px;
+}
+
+.greeting {
+  font-size: 36px;
+  color: $beigegray;
+  font-weight: 600;
+  height: 100px;
+  margin-left: 37px;
+}
+
+.your-plants {
+  font-size: 28px;
+  color: $lightgreen;
+  font-weight: 600;
+  margin-left: 35px;
+  margin-bottom: 14px;
+}
+
+#add {
+  margin-top: 95px;
+  margin-bottom: 95px;
+  margin-left: 95px;
+}
+
+.top-bar-left {
+  margin-left: 15px;
+}
+
+.top-bar-right {
+  margin-top: 6px;
+}

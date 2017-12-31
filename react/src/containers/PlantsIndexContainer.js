@@ -222,7 +222,8 @@ class PlantsIndexContainer extends Component {
 
     return (
       <div>
-        <h1 id='your-plants'>Your Plants</h1>
+        <div className='greeting'>{`Welcome, ${this.state.current_user.first_name}`}</div>
+        <div className='your-plants'>Your Plants</div>
         <div className='rows'>
           {plants}
           <button

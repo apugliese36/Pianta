@@ -14,30 +14,6 @@
  *= require_self
 
  */
-body {
-  font-family: 'Open Sans', sans-serif;
-}
-
-.indexPlant {
-  width: 300px;
-  height: 300px;
-}
-
-#add {
-  margin-top: 185px;
-  margin-bottom: 150px;
-  margin-left: 151px;
-}
-
-.top-bar {
-  color: white;
-  background-color: #aad089
-}
-
-.verdant {
-  color: white;
-  background-color: #aad089;
-}
 
 .grey {
   color: #ebebeb
@@ -54,14 +30,6 @@ a {
 
 a:hover {
   color: #aad089;
-}
-
-/* Your Plants: */
-#your-plants {
-  font-family: OpenSans-SemiBold;
-  color: #454545;
-  text-align: center;
-  margin: 0;
 }
 
 h3 {

@@ -15,14 +15,16 @@ class NavBar extends Component{
         <div className="top-bar">
           <div className="top-bar-left">
             <ul className="menu verdant">
-              <li className="menu-text verdant">Pianta</li>
+              <li className="menu-text verdant">
+                  <img src='/assets/Pianta_White.png' width='76' height='30' alt='pianta'/>
+              </li>
               <li className="verdant"><Link to='/'>Home</Link></li>
-              <li className="verdant"><Link to='/greeting'>Setting</Link></li>
+              <li className="verdant"><Link to='#'>Settings</Link></li>
             </ul>
           </div>
           <div className="top-bar-right">
             <ul className="menu">
-              <li className="verdant"><a href="/logout">Sign Out</a></li>
+              <li className="verdant logout"><a href="/logout">Sign Out</a></li>
             </ul>
           </div>
         </div>

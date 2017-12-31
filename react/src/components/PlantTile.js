@@ -3,7 +3,7 @@ import { browserHistory, Link } from 'react-router';
 
 const PlantTileComponent = props =>{
   return(
-      <div className='small-12 medium-6 large-4 column'>
+      <div className='small-12 medium-4 large-3 column'>
         <div className="container">
           <Link to={`/plants/${props.id}`}>
             <img className='indexPlant' src={`${props.photo}`}/>

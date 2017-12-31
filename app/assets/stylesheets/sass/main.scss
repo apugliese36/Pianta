@@ -3,3 +3,17 @@
 @import "base/reset";
 
 @import "components/sign-in";
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.top-bar {
+  color: white;
+  background-color: $lightgreen;
+}
+
+.verdant {
+  color: white;
+  background-color: $lightgreen;
+}
