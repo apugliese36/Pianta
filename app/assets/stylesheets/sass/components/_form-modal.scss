@@ -1,0 +1,61 @@
+@import "../base/variables";
+@import "../base/mixins";
+@import "../base/reset";
+
+.close {
+  float: right;
+}
+
+.button-right {
+  float: right;
+}
+
+.label-text {
+  font-weight: 600;
+}
+
+.modal-header {
+  color: $grayblack;
+  font-weight: 700;
+}
+
+input {
+  width: 425px!important;
+}
+
+.upload-label {
+  margin-bottom: 2px;
+}
+
+.pianta-button {
+  color: white;
+  text-align: center;
+  padding: 8px 10px;
+  font-weight: 700;
+  font-size: 13px;
+  background-color: $green;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.white-button {
+  color: $beigegray;
+  text-align: center;
+  padding: 8px 10px;
+  font-weight: 700;
+  font-size: 13px;
+  border-style: solid;
+  border-color: $beigegray;
+  border-width: 1px;
+  border-radius: 5px;
+}
+
+.img-preview {
+  height: 300px;
+  width: 300px;
+}
+
+textarea {
+  width: 420px!important;
+  height: 165px!important;
+}

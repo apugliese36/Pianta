@@ -181,23 +181,24 @@ class PlantsIndexContainer extends Component {
               handleSubmit={this.handleSubmit}
               handleImageChange={this.handleImageChange}
               imagePreviewUrl={this.state.imagePreviewUrl}
+              closeModal={this.closeModal}
             />
     } else {
       form = <form>
               <label>
-                Plant Name
+                <div className='label-text'>Plant Name</div>
                 <input value={this.state.plantName} onChange={this.handleInputChange} name='plantName' type='text' placeholder='What type of plant is this?' />
               </label>
               <label>
-                Plant Nickname
+                <div className='label-text'>Plant Nickname</div>
                 <input value={this.state.nickname} onChange={this.handleInputChange} name='nickname' type='text' placeholder='What do you call this plant?' />
               </label>
               <label>
-                When Did You Start Caring For This Plant?
+                <div className='label-text'>When Did You Start Caring For This Plant?</div>
                 <input value={this.state.birthdate} onChange={this.handleInputChange} name='birthdate' type='date' />
               </label>
               <label>
-                Sunlight Needs
+                <div className='label-text'>Sunlight Needs</div>
                 <select value={this.state.sunlightNeeds}onChange={this.handleInputChange} name='sunlightNeeds'>
                   <option value='Sunny (Direct Sun)'>Sunny (Direct Sun)</option>
                   <option value='Bright (Indirect Sun)'>Bright (Indirect Sun)</option>
@@ -207,7 +208,7 @@ class PlantsIndexContainer extends Component {
                 </select>
               </label>
               <label>
-                Watering Needs
+                <div className='label-text'>Watering Needs</div>
                 <select value={this.state.wateringNeeds}onChange={this.handleInputChange} name='wateringNeeds'>
                   <option value='Daily'>Daily</option>
                   <option value='Weekly'>Weekly</option>
@@ -216,7 +217,10 @@ class PlantsIndexContainer extends Component {
                   <option value='Bimonthly'>Bimonthly</option>
                 </select>
               </label>
-              <button onClick={this.handleContinue}>Continue</button>
+              <span className='button-right'>
+                <span><button className='white-button' onClick={this.closeModal}>CANCEL</button></span>
+                <span><button className='pianta-button' onClick={this.handleContinue}>CONTINUE</button></span>
+              </span>
             </form>
     }
 
@@ -224,14 +228,15 @@ class PlantsIndexContainer extends Component {
       <div>
         <div className='greeting'>{`Welcome, ${this.state.current_user.first_name}`}</div>
         <div className='your-plants'>Your Plants</div>
-        <div className='rows'>
+        <div className='row'>
           {plants}
-          <button
-            id='add'
-            onClick={this.openModal}
-          >
-            Add Plant
-          </button>
+          <div className='small-12 medium-4 large-3 column add' onClick={this.openModal}>
+            <div className='add-container'>
+                <div className='add-plant'></div>
+                <div className='center'>Add Plant</div>
+            </div>
+          </div>
+        </div>
           <Modal
             isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
@@ -239,16 +244,18 @@ class PlantsIndexContainer extends Component {
             style={customStyles}
             contentLabel="Add New Plant"
           >
-            <span>
-              <h2 ref={subtitle => this.subtitle = subtitle}>Add New Plant</h2>
-            </span>
-            <span>
-              <button onClick={this.closeModal}>close</button>
-            </span>
+            <div className='modal-header' ref={subtitle => this.subtitle = subtitle}>
+              <i className='fa fa-plus-square fa-fw' aria-hidden='true'></i>Add New Plant
+              <span className='close'>
+                <button onClick={this.closeModal}>
+                  <i className='fa fa-times' aria-hidden='true'></i>
+                </button>
+              </span>
+              <hr/>
+            </div>
             {form}
           </Modal>
         </div>
-      </div>
     );
   }
 }
