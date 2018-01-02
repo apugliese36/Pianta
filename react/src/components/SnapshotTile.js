@@ -10,15 +10,20 @@ const SnapshotTile = props =>{
 
   let image;
   if (props.photo) {
-    image = <img id={props.id} src={props.photo} width='134' height='134'/>
+    image = <div><img onClick={props.snapshotClick} className={`${props.imgStyle} pointer`} id={props.id} src={props.photo} width='134' height='134'/><br/></div>
   }
 
   return(
-    <div onClick={props.snapshotClick} id={props.id}>
-      <div id={props.id}>{dateMonthDay}</div>
-      <div id={props.id}>{props.journalEntry}</div>
-      {image}
-      <br/>
+    <div className={`${props.style} row snapshot-row`}>
+      <div id={props.id} className='small-3 column text-center'>
+        <div onClick={props.snapshotClick} className='pointer snapshot-date' id={props.id}>{dateMonthDay}</div>
+      </div>
+      <div id={props.id} className='small-9 column'>
+        <span onClick={props.snapshotClick} className='pointer' id={props.id}>{props.journalEntry}</span>
+        <br/>
+        {image}
+        <br/>
+      </div>
     </div>
   );
 };

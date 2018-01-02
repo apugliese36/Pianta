@@ -1,3 +1,59 @@
+@import "../base/variables";
+@import "../base/mixins";
+@import "../base/reset";
+
 #scrollbar {
-  height: calc(100vh - 180px)!important;
+  height: calc(100vh - 175px)!important;
+}
+
+.journal-container {
+  position: relative;
+  background-color: #2b2e2e;
+  color: white;
+  height: calc(100vh - 68.19px);
+  padding: 0;
+}
+
+.days {
+  font-weight: 700;
+}
+
+.days-header {
+  text-align: center;
+  font-size: 14.5pt;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 10px;
+  right: 16px;
+}
+
+.snapshot-row {
+  margin-left: 0!important;
+  margin-right: 0!important;
+}
+
+.selected {
+  color: white;
+}
+
+.unselected {
+  color: $beigegray;
+}
+
+.transparent {
+	zoom: 1;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+}
+
+.float-button {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+}
+
+.snapshot-date {
+  font-size: 10pt;
+  padding-top: 3px;
 }

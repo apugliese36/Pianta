@@ -46,7 +46,6 @@ class PlantShowContainer extends React.Component {
       credentials: 'same-origin'
     })
     .then(response => {
-      debugger;
       if (response.ok) {
         return response;
       } else {
@@ -175,22 +174,22 @@ class PlantShowContainer extends React.Component {
     let centerColumn, rightColumn, selectedSnapshotWeekdayMonthDayYear, snapshotDate, snapshotDayNumber;
     if (this.state.selectedSnapshot) {
       snapshotDate = new Date(this.state.selectedSnapshot.created_at)
-      selectedSnapshotWeekdayMonthDayYear = strftime('%A, %b %o, %Y', snapshotDate)
+      selectedSnapshotWeekdayMonthDayYear = strftime('%A, %B %o, %Y', snapshotDate)
       snapshotDayNumber = Math.ceil((snapshotDate - birthdate) / 8.64e7)
       if (this.state.selectedSnapshot.photo) {
-        centerColumn = <img className="center-image" src={this.state.selectedSnapshot.photo} />
+        centerColumn = <img className='center-image' src={this.state.selectedSnapshot.photo} />
         rightColumn = <div>
-                        <div>{`Day ${snapshotDayNumber}`}</div>
-                        <div>{selectedSnapshotWeekdayMonthDayYear}</div>
-                        <div>{this.state.selectedSnapshot.journal_entry}</div>
+                        <div className='day-num'>{`DAY ${snapshotDayNumber}`}</div>
+                        <div className='journal-date'>{selectedSnapshotWeekdayMonthDayYear}</div>
+                        <div className='journal-entry'>{this.state.selectedSnapshot.journal_entry}</div>
                         <hr/>
                       </div>
       } else {
         centerColumn =
                       <div>
-                        <div>{`Day ${snapshotDayNumber}`}</div>
-                        <div>{selectedSnapshotWeekdayMonthDayYear}</div>
-                        <div>{this.state.selectedSnapshot.journal_entry}</div>
+                        <div className='day-num'>{`DAY ${snapshotDayNumber}`}</div>
+                        <div className='journal-date'>{selectedSnapshotWeekdayMonthDayYear}</div>
+                        <div className='journal-entry'>{this.state.selectedSnapshot.journal_entry}</div>
                         <hr/>
                       </div>
       }
@@ -202,14 +201,18 @@ class PlantShowContainer extends React.Component {
               handleSubmit={this.handleSubmit}
               handleImageChange={this.handleImageChange}
               imagePreviewUrl={this.state.imagePreviewUrl}
+              closeModal={this.closeModal}
             />
     } else {
       form = <form>
               <label>
-                Journal Entry
+                <div className='label-text'>Journal Entry</div>
                 <textarea value={this.state.journalEntry} onChange={this.handleInputChange} name='journalEntry' type='text'/>
               </label>
-              <button onClick={this.handleContinue}>Continue</button>
+              <span className='button-right'>
+                <span><button className='white-button' onClick={this.closeModal}>CANCEL</button></span>
+                <span><button className='pianta-button' onClick={this.handleContinue}>CONTINUE</button></span>
+              </span>
             </form>
     }
 
@@ -228,21 +231,24 @@ class PlantShowContainer extends React.Component {
           numberOfDays={numberOfDays}
           birthdate={birthdate}
           openModal={this.openModal}
+          selectedSnapshot={this.state.selectedSnapshot}
         />
 
-        <div className='medium-4 column'>
-          <h3 className='align-center'>{this.state.plant.name}</h3>
-          <div>{this.state.plant.common_name}</div>
-          <div>{`Began on ${birthdateMonthDayYear}`}</div>
+        <div className='medium-4 column beigegray'>
+          <div className='align-center plant-nickname'>{this.state.plant.name}</div>
+          <div className='plant-commonname'>{this.state.plant.common_name}</div>
+          <div className='began-on'>{`Began on ${birthdateMonthDayYear}`}</div>
           <br/>
           {centerColumn}
         </div>
 
-        <div className='medium-4 column'>
-          <h3>Details</h3>
-          <i className="fa fa-leaf"></i><span>{this.state.plant.common_name}</span>
-          <div><i className="fa fa-sun-o"></i><strong>Sunlight: </strong>{this.state.plant.sunlight_needs}</div>
-          <div><i className="fa fa-tint"></i><strong>Watering: </strong>{this.state.plant.watering_needs}</div>
+        <div className='medium-4 column beigegray'>
+          <div className='details-container'>
+            <i className='fa fa-leaf fa-fw'></i><strong>{this.state.plant.common_name}</strong>
+            <div><i className='fa fa-sun-o fa-fw'></i><strong>Sunlight: </strong>{this.state.plant.sunlight_needs}</div>
+            <div><i className='fa fa-tint fa-fw'></i><strong>Watering: </strong>{this.state.plant.watering_needs}</div>
+            <i className='fa fa-pencil edit-button'></i>
+          </div>
           <br/>
           {rightColumn}
         </div>
@@ -252,14 +258,17 @@ class PlantShowContainer extends React.Component {
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}
-          contentLabel="Add New Journal Entry"
+          contentLabel='Add New Journal Entry'
         >
-          <span>
-            <h2 ref={subtitle => this.subtitle = subtitle}>Add Journal Entry</h2>
-          </span>
-          <span>
-            <button onClick={this.closeModal}>close</button>
-          </span>
+          <div className='modal-header' ref={subtitle => this.subtitle = subtitle}>
+            <i className='fa fa-plus-square fa-fw' aria-hidden='true'></i>Add Journal Entry
+            <span className='close'>
+              <button onClick={this.closeModal}>
+                <i className='fa fa-times' aria-hidden='true'></i>
+              </button>
+            </span>
+            <hr/>
+          </div>
           {form}
         </Modal>
       </div>

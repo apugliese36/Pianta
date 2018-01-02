@@ -67,19 +67,6 @@ img {
   text-shadow: 3px 3px 5px black;
 }
 
-.bottom-right {
-  position: absolute;
-  bottom: 3px;
-  right: 16px;
-}
-
-.journal-container {
-  position: relative;
-  background-color: #2b2e2e;
-  color: white;
-  height: calc(100vh - 53.75px);
-}
-
 .menu {
   background-color: #aad089;
   color: #aad089;
@@ -88,4 +75,8 @@ img {
 .center-image {
   height: auto;
   width: auto;
+}
+
+.pointer {
+  cursor: pointer;
 }

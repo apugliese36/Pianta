@@ -1,0 +1,56 @@
+@import "../base/variables";
+@import "../base/mixins";
+@import "../base/reset";
+
+.plant-nickname {
+  font-size: 26px;
+  margin-top: 30px;
+  font-weight: 600;
+}
+
+.plant-commonname {
+  font-size: 14px;
+  margin-bottom: -8px;
+}
+
+.began-on {
+  font-size: 14px;
+}
+
+.day-num {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.journal-date {
+  font-size: 18px;
+  color: $green;
+  margin-bottom: 9px;
+}
+
+.journal-entry {
+  font-size: 14.5px;
+}
+
+.details-container {
+  position: relative;
+  margin-top: 30px;
+  border-style: solid;
+  border-width: 0.5pt;
+  border-radius: 4px;
+  border-color: #cecece;
+  padding-left: 13px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+
+  .edit-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+  }
+}
+
+strong {
+  padding-left: 10px;
+}
