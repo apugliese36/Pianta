@@ -7,12 +7,15 @@ import { Scrollbars } from 'react-custom-scrollbars'
 const TimelineContainer = props => {
   let snapshots = props.snapshots.map(snapshot => {
     let style, imgStyle;
-    if (props.selectedSnapshot.id === snapshot.id) {
-      style = 'selected'
-    } else {
-      style = 'unselected'
-      imgStyle = 'transparent'
+    if (props.selectedSnapshot) {
+      if (props.selectedSnapshot.id === snapshot.id) {
+        style = 'selected'
+      } else {
+        style = 'unselected'
+        imgStyle = 'transparent'
+      }
     }
+    
     return(
       <SnapshotTile
         key={snapshot.id}
