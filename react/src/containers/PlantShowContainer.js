@@ -4,6 +4,7 @@ import TimelineContainer from './TimelineContainer'
 let strftime = require('strftime')
 import Modal from 'react-modal';
 import ImageUpload from '../components/ImageUpload';
+import DetailsBox from './DetailsBox';
 
 const customStyles = {
   content : {
@@ -243,12 +244,12 @@ class PlantShowContainer extends React.Component {
         </div>
 
         <div className='medium-4 column beigegray'>
-          <div className='details-container'>
-            <i className='fa fa-leaf fa-fw'></i><strong>{this.state.plant.common_name}</strong>
-            <div><i className='fa fa-sun-o fa-fw'></i><strong>Sunlight: </strong>{this.state.plant.sunlight_needs}</div>
-            <div><i className='fa fa-tint fa-fw'></i><strong>Watering: </strong>{this.state.plant.watering_needs}</div>
-            <i className='fa fa-pencil edit-button'></i>
-          </div>
+          <DetailsBox
+            plant={this.state.plant}
+            commonName={this.state.plant.common_name}
+            sunlightNeeds={this.state.plant.sunlight_needs}
+            wateringNeeds={this.state.plant.watering_needs}
+          />
           <br/>
           {rightColumn}
         </div>

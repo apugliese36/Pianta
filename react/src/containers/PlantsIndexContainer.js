@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PlantTile from '../components/PlantTile';
 import { Route, IndexRoute, Router, browserHistory, Link, Redirect } from 'react-router';
-import PlantForm from './PlantForm'
+import PlantForm from '../components/PlantForm'
 
 class PlantsIndexContainer extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class PlantsIndexContainer extends Component {
     this.state = {
       plants: [],
       currentUser: {},
-      modalIsOopen: false
+      modalIsOpen: false
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
