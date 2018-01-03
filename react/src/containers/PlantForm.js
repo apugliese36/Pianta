@@ -19,7 +19,6 @@ class PlantForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalIsOpen: this.props.addPlantClicked,
       continueClicked: false,
       plantName: '',
       nickname: '',
@@ -28,11 +27,9 @@ class PlantForm extends Component {
       wateringNeeds: 'Daily',
       file: '',
       imagePreviewUrl: null,
-      currentUser: ''
+      currentUser: {}
     };
-    this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
+    this.clearForm = this.clearForm.bind(this);
     this.handleContinue = this.handleContinue.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
@@ -71,10 +68,8 @@ class PlantForm extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.closeModal()
-      this.setState({
-        plants: body.plants
-      })
+      this.clearForm()
+      this.props.getPlants();
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -103,16 +98,8 @@ class PlantForm extends Component {
     });
   }
 
-  openModal() {
-    this.setState( {modalIsOpen: true} );
-  }
-
-  afterOpenModal() {
-  }
-
-  closeModal() {
+  clearForm() {
     this.setState({
-      modalIsOpen: false,
       continueClicked: false,
       plantName: '',
       nickname: '',
@@ -122,6 +109,7 @@ class PlantForm extends Component {
       file: '',
       imagePreviewUrl: null
     });
+    this.props.closeModal();
   }
 
   handleContinue(event) {
@@ -197,7 +185,7 @@ class PlantForm extends Component {
                 </select>
               </label>
               <span className='button-right'>
-                <span><button className='white-button' onClick={this.closeModal}>CANCEL</button></span>
+                <span><button className='white-button' onClick={this.clearForm}>CANCEL</button></span>
                 <span><button className='pianta-button' onClick={this.handleContinue}>CONTINUE</button></span>
               </span>
             </form>
@@ -206,16 +194,16 @@ class PlantForm extends Component {
     return (
       <div>
           <Modal
-            isOpen={this.state.modalIsOpen}
+            isOpen={this.props.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
-            onRequestClose={this.closeModal}
+            onRequestClose={this.clearForm}
             style={customStyles}
             contentLabel="Add New Plant"
           >
             <div className='modal-header' ref={subtitle => this.subtitle = subtitle}>
               <i className='fa fa-plus-square fa-fw' aria-hidden='true'></i>Add New Plant
               <span className='close'>
-                <button onClick={this.closeModal}>
+                <button onClick={this.clearForm}>
                   <i className='fa fa-times' aria-hidden='true'></i>
                 </button>
               </span>
@@ -227,5 +215,6 @@ class PlantForm extends Component {
     );
   }
 }
+
 
 export default PlantForm;

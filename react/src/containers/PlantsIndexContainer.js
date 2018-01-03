@@ -8,36 +8,47 @@ class PlantsIndexContainer extends Component {
     super(props);
     this.state = {
       plants: [],
-      currentUser: '',
-      addPlantClicked: false
+      currentUser: {},
+      modalIsOopen: false
     };
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.getPlants = this.getPlants.bind(this);
+  }
+
+  openModal() {
+    this.setState( {modalIsOpen: true} );
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
+  getPlants() {
+    fetch('/api/v1/plants', {
+      credentials: 'same-origin'
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({
+        plants: body.plants,
+        currentUser: body.current_user
+      });
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   componentDidMount () {
-  fetch('/api/v1/plants', {
-    credentials: 'same-origin'
-  })
-  .then(response => {
-    if (response.ok) {
-      return response;
-    } else {
-      let errorMessage = `${response.status} (${response.statusText})`,
-      error = new Error(errorMessage);
-      throw(error);
-    }
-  })
-  .then(response => response.json())
-  .then(body => {
-    this.setState({
-      plants: body.plants,
-      currentUser: body.current_user
-    });
-  })
-  .catch(error => console.error(`Error in fetch: ${error.message}`));
-  }
-
-  handleClick() {
-    this.setState( {addPlantClicked: true} );
+    this.getPlants();
   }
 
   render () {
@@ -66,7 +77,9 @@ class PlantsIndexContainer extends Component {
           </div>
         </div>
         <PlantForm
-          addPlantClicked={this.state.addPlantClicked}
+          modalIsOpen={this.state.modalIsOpen}
+          closeModal={this.closeModal}
+          getPlants={this.getPlants}
          />
         </div>
     );
