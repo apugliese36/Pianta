@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :snapshots, only: [:index, :show, :create, :destroy]
-      resources :plants, only: [:index, :show, :create, :destroy]
+      resources :snapshots, only: [:index, :show, :create, :update, :destroy]
+      resources :plants, only: [:index, :show, :create, :update, :destroy]
     end
   end
 
