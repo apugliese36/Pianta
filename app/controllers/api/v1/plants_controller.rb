@@ -1,5 +1,5 @@
 class Api::V1::PlantsController < ApiController
-  skip_before_action :verify_authenticity_token, only: [:index, :create, :destroy]
+  skip_before_action :verify_authenticity_token, only: [:index, :show, :create, :update, :destroy]
 
   def index
     plants = Plant.where(user: current_user)
@@ -28,19 +28,22 @@ class Api::V1::PlantsController < ApiController
     end
   end
 
-  # def destroy
-  #   @superhero = Superhero.find(params[:id])
-  #   @superhero.delete
-  # end
+  def update
+    plant = Plant.update(params[:id], plant_params)
+    if plant.save
+      render json: plant
+    else
+      render json: { errors: plant.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    plant = Plant.find(params[:id])
+    plant.destroy
+    render json: { message: 'Post deleted' }
+  end
 
   private
-
-  # def require_permission
-  #   @superhero = Superhero.find(params[:id])
-  #   if current_user.id != @superhero.user_id && current_user.role != 'admin'
-  #     redirect_to :root
-  #   end
-  # end
 
   def plant_params
     params.require(:plant).permit(

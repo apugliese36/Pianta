@@ -15,26 +15,21 @@
 //   }
 // };
 //
-// class PlantsIndexContainer extends Component {
+// class PlantEdit extends Component {
 //   constructor(props) {
 //     super(props);
 //     this.state = {
-//       plants: [],
-//       modalIsOpen: false,
 //       continueClicked: false,
 //       plantName: '',
 //       nickname: '',
 //       birthdate: '',
-//       sunlightNeeds: 'Sunny (Direct Sun)',
-//       wateringNeeds: 'Daily',
+//       sunlightNeeds: '',
+//       wateringNeeds: '',
 //       file: '',
-//       imagePreviewUrl: null,
-//       current_user: ''
+//       imagePreviewUrl: '',
+//       userId: ''
 //     };
-//     this.handleClick = this.handleClick.bind(this);
-//     this.openModal = this.openModal.bind(this);
-//     this.afterOpenModal = this.afterOpenModal.bind(this);
-//     this.closeModal = this.closeModal.bind(this);
+//     this.clearForm = this.clearForm.bind(this);
 //     this.handleContinue = this.handleContinue.bind(this);
 //     this.handleInputChange = this.handleInputChange.bind(this);
 //     this.handleImageChange = this.handleImageChange.bind(this);
@@ -50,15 +45,15 @@
 //       watering_needs: this.state.wateringNeeds,
 //       photo: this.state.imagePreviewUrl,
 //       birthdate: this.state.birthdate,
-//       user_id: this.state.current_user.id
+//       user_id: this.state.userId
 //     }
-//     this.newPlant(formPayload)
+//     this.editPlant(formPayload)
 //   }
 //
-//   newPlant(formPayload) {
+//   editPlant(formPayload) {
 //     fetch('/api/v1/plants', {
 //       credentials: 'same-origin',
-//       method: 'POST',
+//       method: 'PATCH',
 //       body: JSON.stringify(formPayload),
 //       headers: { 'Content-Type': 'application/json' }
 //     })
@@ -73,10 +68,8 @@
 //     })
 //     .then(response => response.json())
 //     .then(body => {
-//       this.closeModal()
-//       this.setState({
-//         plants: body.plants
-//       })
+//       this.clearForm()
+//       this.props.getPlants();
 //     })
 //     .catch(error => console.error(`Error in fetch: ${error.message}`));
 //   }
@@ -105,31 +98,8 @@
 //     });
 //   }
 //
-//   openModal() {
-//     this.setState( {modalIsOpen: true} );
-//   }
-//
-//   afterOpenModal() {
-//   }
-//
-//   closeModal() {
-//     this.setState({
-//       modalIsOpen: false,
-//       continueClicked: false,
-//       plantName: '',
-//       nickname: '',
-//       birthdate: '',
-//       sunlightNeeds: 'Sunny (Direct Sun)',
-//       wateringNeeds: 'Daily',
-//       file: '',
-//       imagePreviewUrl: null
-//     });
-//   }
-//
-//   handleClick(event) {
-//     this.setState({
-//       currentGarden: Number(event.target.id)
-//     });
+//   clearForm() {
+//     this.props.closeModal();
 //   }
 //
 //   handleContinue(event) {
@@ -140,40 +110,35 @@
 //   }
 //
 //   componentDidMount () {
-//   fetch('/api/v1/plants', {
-//     credentials: 'same-origin'
-//   })
-//   .then(response => {
-//     if (response.ok) {
-//       return response;
-//     } else {
-//       let errorMessage = `${response.status} (${response.statusText})`,
-//       error = new Error(errorMessage);
-//       throw(error);
-//     }
-//   })
-//   .then(response => response.json())
-//   .then(body => {
-//     this.setState({
-//       plants: body.plants,
-//       current_user: body.current_user
-//     });
-//   })
-//   .catch(error => console.error(`Error in fetch: ${error.message}`));
+//     fetch(`/api/v1/plants/${this.props.params.id}`, {
+//       credentials: 'same-origin'
+//     })
+//     .then(response => {
+//       if (response.ok) {
+//         return response;
+//       } else {
+//         this.setState({ error: true })
+//         let errorMessage = `${response.status} (${response.statusText})`,
+//         error = new Error(errorMessage);
+//         throw(error);
+//       }
+//     })
+//     .then(response => response.json())
+//     .then(body => {
+//       this.setState({
+//         plantName: body.plant.common_name,
+//         nickname: body.plant.name,
+//         birthdate: body.plant.birthdate,
+//         sunlightNeeds: body.plant.sunlight_need,
+//         wateringNeeds: body.plant.watering_needs,
+//         imagePreviewUrl: body.plant.photo,
+//         userId: body.plant.user_id
+//       });
+//     })
+//     .catch(error => console.error(`Error in fetch: ${error.message}`));
 //   }
 //
 //   render () {
-//     let plants = this.state.plants.map(plant => {
-//       return (
-//         <PlantTile
-//           key={plant.id}
-//           id={plant.id}
-//           name={plant.name}
-//           photo={plant.photo}
-//         />
-//       );
-//     });
-//
 //     let form;
 //     if (this.state.continueClicked) {
 //       form =<ImageUpload
@@ -217,7 +182,7 @@
 //                 </select>
 //               </label>
 //               <span className='button-right'>
-//                 <span><button className='white-button' onClick={this.closeModal}>CANCEL</button></span>
+//                 <span><button className='white-button' onClick={this.clearForm}>CANCEL</button></span>
 //                 <span><button className='pianta-button' onClick={this.handleContinue}>CONTINUE</button></span>
 //               </span>
 //             </form>
@@ -225,28 +190,16 @@
 //
 //     return (
 //       <div>
-//         <div className='greeting'>{`Welcome, ${this.state.current_user.first_name}`}</div>
-//         <div className='your-plants'>Your Plants</div>
-//         <div className='row'>
-//           {plants}
-//           <div className='small-12 medium-4 large-3 column add' onClick={this.openModal}>
-//             <div className='add-container'>
-//                 <div className='add-plant'></div>
-//                 <div className='center'>Add Plant</div>
-//             </div>
-//           </div>
-//         </div>
 //           <Modal
-//             isOpen={this.state.modalIsOpen}
-//             onAfterOpen={this.afterOpenModal}
-//             onRequestClose={this.closeModal}
+//             isOpen={this.props.modalIsOpen}
+//             onRequestClose={this.clearForm}
 //             style={customStyles}
-//             contentLabel="Add New Plant"
+//             contentLabel='Update Plant'
 //           >
 //             <div className='modal-header' ref={subtitle => this.subtitle = subtitle}>
-//               <i className='fa fa-plus-square fa-fw' aria-hidden='true'></i>Add New Plant
+//               <i className='fa fa-plus-square fa-fw' aria-hidden='true'></i>Update Plant
 //               <span className='close'>
-//                 <button onClick={this.closeModal}>
+//                 <button onClick={this.clearForm}>
 //                   <i className='fa fa-times' aria-hidden='true'></i>
 //                 </button>
 //               </span>
@@ -259,4 +212,5 @@
 //   }
 // }
 //
-// export default PlantsIndexContainer;
+//
+// export default PlantEdit;

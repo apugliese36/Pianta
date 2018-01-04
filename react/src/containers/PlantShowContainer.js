@@ -1,9 +1,11 @@
 import React from 'react';
 import { Router, browserHistory } from 'react-router';
 import TimelineContainer from './TimelineContainer'
-let strftime = require('strftime')
 import Modal from 'react-modal';
 import ImageUpload from '../components/ImageUpload';
+import PlantEdit from '../components/PlantEdit';
+import DetailsBox from './DetailsBox';
+let strftime = require('strftime')
 
 const customStyles = {
   content : {
@@ -25,23 +27,37 @@ class PlantShowContainer extends React.Component {
       selectedSnapshot: {},
       modalIsOpen: false,
       continueClicked: false,
+      editClicked: false,
+      deleteClicked: false,
       journalEntry: '',
       file: '',
       imagePreviewUrl: null,
-      error: false
+      error: false,
+      plantName: '',
+      nickname: '',
+      birthdate: '',
+      sunlightNeeds: 'Sunny (Direct Sun)',
+      wateringNeeds: 'Daily',
+      file: '',
+      imagePreviewUrl: null,
+      currentUser: {}
     };
     this.snapshotClick = this.snapshotClick.bind(this);
     this.selectedSnapshot = this.selectedSnapshot.bind(this);
     this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleContinue = this.handleContinue.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleEditSubmit = this.handleEditSubmit.bind(this);
+    this.handleSnapshotSubmit = this.handleSnapshotSubmit.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.deletePlant = this.deletePlant.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+
   }
 
-  componentDidMount () {
+  getPlant() {
     fetch(`/api/v1/plants/${this.props.params.id}`, {
       credentials: 'same-origin'
     })
@@ -60,13 +76,36 @@ class PlantShowContainer extends React.Component {
       this.setState({
         plant: body.plant,
         snapshots: body.plant.snapshots.reverse(),
-        selectedSnapshot: body.plant.snapshots[0]
+        selectedSnapshot: body.plant.snapshots[0],
+        plantName: body.plant.common_name,
+        nickname: body.plant.name,
+        birthdate: body.plant.birthdate,
+        sunlightNeeds: body.plant.sunlight_needs,
+        wateringNeeds: body.plant.watering_needs,
+        imagePreviewUrl: body.plant.photo
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  handleSubmit(e) {
+  componentDidMount() {
+    this.getPlant()
+  }
+
+  deletePlant(event) {
+   event.preventDefault()
+   fetch(`/api/v1/plants/${this.props.params.id}`, {
+     method: 'DELETE',
+     credentials: 'same-origin',
+     headers: {'Content-Type': 'application/json'}
+   })
+   .then(response => {
+     alert('Plant was deleted')
+     browserHistory.push('/')
+   })
+ }
+
+  handleSnapshotSubmit(e) {
     e.preventDefault();
     let formPayload = {
       journal_entry: this.state.journalEntry,
@@ -74,6 +113,54 @@ class PlantShowContainer extends React.Component {
       plant_id: +this.props.params.id
     }
     this.newSnapshot(formPayload);
+  }
+
+  handleEditSubmit(e) {
+    e.preventDefault();
+    let formPayload = {
+      name: this.state.nickname,
+      common_name: this.state.plantName,
+      sunlight_needs: this.state.sunlightNeeds,
+      watering_needs: this.state.wateringNeeds,
+      photo: this.state.imagePreviewUrl,
+      birthdate: this.state.birthdate,
+      user_id: this.state.plant.user_id
+    }
+    this.editPlant(formPayload)
+  }
+
+  editPlant(formPayload) {
+    fetch(`/api/v1/plants/${this.props.params.id}`, {
+      credentials: 'same-origin',
+      method: 'PATCH',
+      body: JSON.stringify(formPayload),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.closeModal()
+      this.setState({
+        plant: body.plant,
+        snapshots: body.plant.snapshots.reverse(),
+        selectedSnapshot: body.plant.snapshots[0],
+        plantName: body.plant.common_name,
+        nickname: body.plant.name,
+        birthdate: body.plant.birthdate,
+        sunlightNeeds: body.plant.sunlight_needs,
+        wateringNeeds: body.plant.watering_needs,
+        imagePreviewUrl: body.plant.photo
+      });
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   newSnapshot(formPayload) {
@@ -130,13 +217,13 @@ class PlantShowContainer extends React.Component {
     this.setState( {modalIsOpen: true} );
   }
 
-  afterOpenModal() {
-  }
-
-  closeModal() {
+  closeModal(event) {
+    event.preventDefault()
     this.setState({
       modalIsOpen: false,
       continueClicked: false,
+      editClicked: false,
+      deleteClicked: false,
       journalEntry: '',
       file: '',
       imagePreviewUrl: null
@@ -148,6 +235,17 @@ class PlantShowContainer extends React.Component {
     this.setState({
       continueClicked: true
     })
+  }
+
+  handleEdit(event) {
+    event.preventDefault()
+    this.openModal()
+    this.setState( {editClicked: true} )
+  }
+
+  handleDeleteClick(event) {
+    event.preventDefault()
+    this.setState( {deleteClicked: true} )
   }
 
   snapshotClick(event) {
@@ -195,15 +293,73 @@ class PlantShowContainer extends React.Component {
       }
     }
 
-    let form;
-    if (this.state.continueClicked) {
+    let form, formHeader;
+    if (this.state.deleteClicked) {
+      formHeader = 'Are you sure you want to delete your plant?'
+      form = <div className='text-center'>
+              <span><button className='white-button' onClick={this.deletePlant}>YES</button></span>
+              <span><button className='white-button' onClick={this.closeModal}>NO</button></span>
+            </div>
+    } else if (this.state.continueClicked && this.state.editClicked) {
+      formHeader = 'Update Plant Profile Picture'
       form =<ImageUpload
-              handleSubmit={this.handleSubmit}
+              handleSubmit={this.handleEditSubmit}
+              handleImageChange={this.handleImageChange}
+              currentImage={this.state.plant.photo}
+              imagePreviewUrl={this.state.imagePreviewUrl}
+              closeModal={this.closeModal}
+            />
+    } else if (this.state.continueClicked) {
+      formHeader = 'Add Journal Image'
+      form =<ImageUpload
+              handleSubmit={this.handleSnapshotSubmit}
               handleImageChange={this.handleImageChange}
               imagePreviewUrl={this.state.imagePreviewUrl}
               closeModal={this.closeModal}
             />
+    } else if (this.state.editClicked) {
+      formHeader = 'Edit Plant'
+      form = <form>
+              <label>
+                <div className='label-text'>Plant Name</div>
+                <input value={this.state.plantName} onChange={this.handleInputChange} name='plantName' type='text' />
+              </label>
+              <label>
+                <div className='label-text'>Plant Nickname</div>
+                <input value={this.state.nickname} onChange={this.handleInputChange} name='nickname' type='text' />
+              </label>
+              <label>
+                <div className='label-text'>When Did You Start Caring For This Plant?</div>
+                <input value={this.state.birthdate} onChange={this.handleInputChange} name='birthdate' type='date' />
+              </label>
+              <label>
+                <div className='label-text'>Sunlight Needs</div>
+                <select value={this.state.sunlightNeeds} onChange={this.handleInputChange} name='sunlightNeeds'>
+                  <option value='Sunny (Direct Sun)'>Sunny (Direct Sun)</option>
+                  <option value='Bright (Indirect Sun)'>Bright (Indirect Sun)</option>
+                  <option value='Partially Shaded (Low Light)'>Partially Shaded (Low Light)</option>
+                  <option value='Shady'>Shady</option>
+                  <option value='Artificial Light'>Artificial Light</option>
+                </select>
+              </label>
+              <label>
+                <div className='label-text'>Watering Needs</div>
+                <select value={this.state.wateringNeeds} onChange={this.handleInputChange} name='wateringNeeds'>
+                  <option value='Daily'>Daily</option>
+                  <option value='Weekly'>Weekly</option>
+                  <option value='Biweekly'>Biweekly</option>
+                  <option value='Monthly'>Monthly</option>
+                  <option value='Bimonthly'>Bimonthly</option>
+                </select>
+              </label>
+              <span className='button-right'>
+                <span><button className='white-button' onClick={this.handleDeleteClick}>DELETE PLANT</button></span>
+                <span><button className='white-button' onClick={this.closeModal}>CANCEL</button></span>
+                <span><button className='pianta-button' onClick={this.handleContinue}>CONTINUE</button></span>
+              </span>
+            </form>
     } else {
+      formHeader = 'Add Journal Entry'
       form = <form>
               <label>
                 <div className='label-text'>Journal Entry</div>
@@ -243,12 +399,15 @@ class PlantShowContainer extends React.Component {
         </div>
 
         <div className='medium-4 column beigegray'>
-          <div className='details-container'>
-            <i className='fa fa-leaf fa-fw'></i><strong>{this.state.plant.common_name}</strong>
-            <div><i className='fa fa-sun-o fa-fw'></i><strong>Sunlight: </strong>{this.state.plant.sunlight_needs}</div>
-            <div><i className='fa fa-tint fa-fw'></i><strong>Watering: </strong>{this.state.plant.watering_needs}</div>
-            <i className='fa fa-pencil edit-button'></i>
-          </div>
+          <DetailsBox
+            handleEdit={this.handleEdit}
+            getPlant={this.getPlant}
+            plant={this.state.plant}
+            plantId={this.state.plant.id}
+            commonName={this.state.plant.common_name}
+            sunlightNeeds={this.state.plant.sunlight_needs}
+            wateringNeeds={this.state.plant.watering_needs}
+          />
           <br/>
           {rightColumn}
         </div>
@@ -261,7 +420,7 @@ class PlantShowContainer extends React.Component {
           contentLabel='Add New Journal Entry'
         >
           <div className='modal-header' ref={subtitle => this.subtitle = subtitle}>
-            <i className='fa fa-plus-square fa-fw' aria-hidden='true'></i>Add Journal Entry
+            <i className='fa fa-plus-square fa-fw' aria-hidden='true'></i>{formHeader}
             <span className='close'>
               <button onClick={this.closeModal}>
                 <i className='fa fa-times' aria-hidden='true'></i>
