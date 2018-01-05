@@ -217,8 +217,7 @@ class PlantShowContainer extends React.Component {
     this.setState( {modalIsOpen: true} );
   }
 
-  closeModal(event) {
-    event.preventDefault()
+  closeModal() {
     this.setState({
       modalIsOpen: false,
       continueClicked: false,
