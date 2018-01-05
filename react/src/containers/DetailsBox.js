@@ -43,7 +43,6 @@ class DetailsBox extends React.Component {
   // }
 
   render() {
-    console.log('rendering')
     let scientificName;
     if (this.state.scientificName) {
       scientificName = <div><i className='fa fa-file-text-o fa-fw'></i><strong>{this.state.scientificName}</strong></div>

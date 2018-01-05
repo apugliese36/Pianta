@@ -113,12 +113,16 @@ class PlantShowContainer extends React.Component {
 
   handleEditSubmit(e) {
     e.preventDefault();
+    let updatedPlantPhoto = this.state.imagePreviewUrl
+    if (!updatedPlantPhoto) {
+      updatedPlantPhoto = this.state.plant.photo
+    }
     let formPayload = {
       name: this.state.nickname,
       common_name: this.state.plantName,
       sunlight_needs: this.state.sunlightNeeds,
       watering_needs: this.state.wateringNeeds,
-      photo: this.state.imagePreviewUrl,
+      photo: updatedPlantPhoto,
       birthdate: this.state.birthdate,
       user_id: this.state.plant.user_id
     }

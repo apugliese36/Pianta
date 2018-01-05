@@ -2,7 +2,7 @@ class Api::V1::PlantsController < ApiController
   skip_before_action :verify_authenticity_token, only: [:index, :show, :create, :update, :destroy]
 
   def index
-    plants = Plant.where(user: current_user)
+    plants = Plant.where(user: current_user).order(:created_at)
     render json: { plants: plants, current_user: current_user }
   end
 
