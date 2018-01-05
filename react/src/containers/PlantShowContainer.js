@@ -38,8 +38,6 @@ class PlantShowContainer extends React.Component {
       birthdate: '',
       sunlightNeeds: 'Sunny (Direct Sun)',
       wateringNeeds: 'Daily',
-      file: '',
-      imagePreviewUrl: null,
       currentUser: {}
     };
     this.snapshotClick = this.snapshotClick.bind(this);
@@ -54,7 +52,6 @@ class PlantShowContainer extends React.Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.deletePlant = this.deletePlant.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
-
   }
 
   getPlant() {
@@ -81,8 +78,7 @@ class PlantShowContainer extends React.Component {
         nickname: body.plant.name,
         birthdate: body.plant.birthdate,
         sunlightNeeds: body.plant.sunlight_needs,
-        wateringNeeds: body.plant.watering_needs,
-        imagePreviewUrl: body.plant.photo
+        wateringNeeds: body.plant.watering_needs
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -156,8 +152,7 @@ class PlantShowContainer extends React.Component {
         nickname: body.plant.name,
         birthdate: body.plant.birthdate,
         sunlightNeeds: body.plant.sunlight_needs,
-        wateringNeeds: body.plant.watering_needs,
-        imagePreviewUrl: body.plant.photo
+        wateringNeeds: body.plant.watering_needs
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
