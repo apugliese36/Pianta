@@ -38,6 +38,10 @@ input {
   margin-left: 5px;
 }
 
+.pianta-button:hover {
+  background-color: $darkgreen;
+}
+
 .white-button {
   color: $beigegray;
   text-align: center;
@@ -49,6 +53,11 @@ input {
   border-width: 1px;
   border-radius: 5px;
   margin-left: 5px;
+}
+
+.white-button:hover {
+  color: $darkgreen;
+  border-color: $darkgreen;
 }
 
 .img-preview {

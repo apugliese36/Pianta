@@ -3,9 +3,28 @@
 @import "../base/reset";
 
 .indexPlant {
-  width: 200px;
-  height: 200px;
-  margin-bottom: 5px;
+  width: 162pt;
+  height: 162pt;
+  margin-bottom: 15px;
+}
+
+.container {
+  position: relative;
+  color: white;
+  text-align: center;
+
+  .bottom-left {
+    position: absolute;
+    /* bottom: 8px;
+    right: 66px; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bolder;
+    font-size: 20px;
+    text-shadow: 3px 3px 5px black;
+  }
 }
 
 .add-container {
@@ -46,6 +65,7 @@
   font-weight: 600;
   height: 100px;
   margin-left: 37px;
+  margin-top: 27px;
 }
 
 .your-plants {
@@ -74,4 +94,20 @@
 
 .menu {
   background-color: $lightgreen;
+}
+
+.hvr-grow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }

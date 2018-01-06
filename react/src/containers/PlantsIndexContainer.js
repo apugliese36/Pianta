@@ -69,8 +69,8 @@ class PlantsIndexContainer extends Component {
         <div className='your-plants'>Your Plants</div>
         <div className='row'>
           {plants}
-          <div className='small-12 medium-4 large-3 column add' onClick={this.openModal}>
-            <div className='add-container'>
+          <div className='small-12 medium-4 large-3 column add text-center' onClick={this.openModal}>
+            <div className='add-container hvr-grow'>
                 <div className='add-plant'></div>
                 <div className='center'>Add Plant</div>
             </div>
