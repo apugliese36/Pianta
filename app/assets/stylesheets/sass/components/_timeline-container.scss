@@ -3,7 +3,7 @@
 @import "../base/reset";
 
 #scrollbar {
-  height: calc(100vh - 175px)!important;
+  height: calc(100vh - 137px)!important;
 }
 
 .journal-container {
@@ -21,6 +21,8 @@
 .days-header {
   text-align: center;
   font-size: 14.5pt;
+  margin-top: 14pt;
+  margin-bottom: 14pt;
 }
 
 .bottom-right {
@@ -58,4 +60,18 @@
 .snapshot-date {
   font-size: 10pt;
   padding-top: 3px;
+}
+
+.snapshot {
+  border-left-style: solid;
+  border-width: 1px;
+  border-color: $beigegray;
+}
+
+hr.line {
+  color: $beigegray;
+  background-color: $beigegray;
+  margin: 0;
+  margin-bottom: 2px;
+
 }
