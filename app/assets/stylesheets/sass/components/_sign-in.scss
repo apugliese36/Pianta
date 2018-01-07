@@ -21,9 +21,10 @@
 }
 
 .welcome-to {
-  font-size: 36px;
+  font-size: 32.4px;
   color: $beigegray;
   font-weight: 600;
+  margin-bottom: 10px;
 }
 
 .info {
@@ -32,22 +33,22 @@
   background-image: url('/assets/Side_Banner.png');
   background-repeat: no-repeat;
   background-size: cover;
-  padding-left: 35px;
-  padding-top: 25px;
-  padding-right: 40px;
+  padding-left: 31.5px;
+  padding-top: 22.5px;
+  padding-right: 36px;
 }
 
 .sign-in-top-left-logo {
-  margin-bottom: 70px;
+  margin-bottom: 60px;
 }
 
 .what-is {
-  font-size: 34px;
+  font-size: 31px;
   font-weight: bold;
 }
 
 .feature {
-  font-size: 18px;
+  font-size: 16.2px;
   font-weight: bold;
 }
 
@@ -62,5 +63,16 @@
 }
 
 .details {
-  font-size: 14px;
+  font-size: 12.6px;
+}
+
+.sign-in {
+  background-image: url('/assets/google_sign_in.png');
+  width: 191px;
+  height: 46px;
+  margin: auto;
+}
+
+.sign-in:hover {
+  background-image: url('/assets/google_sign_in_hover.png');
 }
