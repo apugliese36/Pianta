@@ -1,0 +1,25 @@
+@import "../base/variables";
+@import "../base/mixins";
+@import "../base/reset";
+
+div.top-bar a {
+  color: white;
+}
+
+div.top-bar a:hover {
+  color: $darkgreen;
+}
+
+.top-bar-left {
+  margin-left: 15px;
+  width: initial !important;
+}
+
+.top-bar-right {
+  margin-top: 6px;
+  width: initial !important;
+}
+
+.menu {
+  background-color: $lightgreen;
+}

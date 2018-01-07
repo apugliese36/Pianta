@@ -19,10 +19,6 @@
   color: #ebebeb
 }
 
-div.top-bar a {
-  color: white;
-}
-
 a {
   color: #555555;
 
@@ -46,35 +42,9 @@ img {
   max-width: none;
 }
 
-/* Container holding the image and the text */
-.container {
-  position: relative;
-  color: white;
-  text-align: center;
-}
-
-/* Bottom left text */
-.bottom-left {
-  position: absolute;
-  /* bottom: 8px;
-  right: 66px; */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-weight: bolder;
-  font-size: 20px;
-  text-shadow: 3px 3px 5px black;
-}
-
 .menu {
   background-color: #aad089;
   color: #aad089;
-}
-
-.center-image {
-  height: auto;
-  width: auto;
 }
 
 .pointer {

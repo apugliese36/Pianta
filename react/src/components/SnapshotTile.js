@@ -18,7 +18,7 @@ const SnapshotTile = props =>{
       <div id={props.id} className='small-3 column text-center'>
         <div onClick={props.snapshotClick} className='pointer snapshot-date' id={props.id}>{dateMonthDay}</div>
       </div>
-      <div id={props.id} className='small-9 column'>
+      <div id={props.id} className='small-9 column snapshot'>
         <span onClick={props.snapshotClick} className='pointer' id={props.id}>{props.journalEntry}</span>
         <br/>
         {image}

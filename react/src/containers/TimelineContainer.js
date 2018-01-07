@@ -15,7 +15,7 @@ const TimelineContainer = props => {
         imgStyle = 'transparent'
       }
     }
-    
+
     return(
       <SnapshotTile
         key={snapshot.id}
@@ -33,7 +33,7 @@ const TimelineContainer = props => {
   return(
     <div className='medium-4 column journal-container'>
       <h3 className='days-header'><strong>{props.numberOfDays} days</strong> in your care</h3>
-      <hr/>
+      <hr className='line'/>
       <Scrollbars id='scrollbar'>
         {snapshots}
       </Scrollbars>

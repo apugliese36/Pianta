@@ -3,27 +3,17 @@ import { browserHistory, Link } from 'react-router';
 
 const PlantTileComponent = props =>{
   return(
-      <div className='small-12 medium-4 large-3 column'>
-        <div className="container">
+      <span>
+        <div className='hvr-grow container'>
           <Link to={`/plants/${props.id}`}>
-            <img className='indexPlant' src={`${props.photo}`}/>
+            <div className='image-gradient'>
+              <img className='plantImg' src={`${props.photo}`}/>
+            </div>
             <div className="bottom-left">{props.name}</div>
           </Link>
         </div>
-      </div>
+      </span>
   );
 };
 
 export default PlantTileComponent;
-
-
-{/* <h3>{props.name}</h3>
-<img
-  className='indexPlant'
-  src={`${props.photo}`}
-/> */}
-
-{/* <div className="container">
-  <img className='indexPlant' src={`${props.photo}`}/>
-  <div className="bottom-left">{props.name}</div>
-</div> */}

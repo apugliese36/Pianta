@@ -67,21 +67,24 @@ class PlantsIndexContainer extends Component {
       <div>
         <div className='greeting'>{`Welcome, ${this.state.currentUser.first_name}`}</div>
         <div className='your-plants'>Your Plants</div>
-        <div className='row'>
+        <div className='plants-container'>
           {plants}
-          <div className='small-12 medium-4 large-3 column add' onClick={this.openModal}>
-            <div className='add-container'>
+          <span onClick={this.openModal}>
+            <div className='hvr-grow container'>
                 <div className='add-plant'></div>
-                <div className='center'>Add Plant</div>
+                <div className='center text-center'>
+                  <i className='fa fa-plus'></i><br/>
+                  ADD PLANT
+                </div>
             </div>
-          </div>
+          </span>
         </div>
         <PlantForm
           modalIsOpen={this.state.modalIsOpen}
           closeModal={this.closeModal}
           getPlants={this.getPlants}
          />
-        </div>
+      </div>
     );
   }
 }
