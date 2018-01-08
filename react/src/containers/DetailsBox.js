@@ -8,39 +8,30 @@ class DetailsBox extends React.Component {
       scientificName: ''
     };
   }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   // if nextState equals the current state return false
-  //   if ((nextState.scientificName.length > 0 && this.state.scientificName.length > 0) && (nextState.scientificName == this.state.scientificName)) {
-  //     return false
-  //   } else {
-  //     return true
-  //   }
-  // }
-  //
-  // componentDidUpdate(x, y) {
-  //   let commonName = this.props.commonName.toLowerCase();
-  //   fetch(`https://plantsdb.xyz/search?common_name=${commonName}`)
-  //   .then(response => {
-  //     if (response.ok) {
-  //       return response;
-  //     } else {
-  //       let errorMessage = `${response.status} (${response.statusText})`,
-  //       error = new Error(errorMessage);
-  //       throw(error);
-  //     }
-  //   })
-  //   .then(response => response.json())
-  //   .then(body => {
-  //     let genus, species;
-  //     if (body.data) {
-  //       genus = body.data[0].Genus;
-  //       species = body.data[0].Species;
-  //       this.setState({scientificName:`${genus} ${species}`})
-  //     }
-  //   })
-  //   .catch(error => console.error(`Error in fetch: ${error.message}`));
-  // }
+  
+  componentDidMount() {
+    let commonName = this.props.commonName.toLowerCase();
+    fetch(`https://plantsdb.xyz/search?common_name=${commonName}`)
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      let genus, species;
+      if (body.data) {
+        genus = body.data[0].Genus;
+        species = body.data[0].Species;
+        this.setState({scientificName:`${genus} ${species}`})
+      }
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
 
   render() {
     let scientificName;
