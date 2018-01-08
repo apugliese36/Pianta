@@ -3,26 +3,26 @@
 @import "../base/reset";
 
 .plants-container {
-  margin-left: 36px;
+  margin-left: 32.4px;
 }
 
 .container {
   position: relative;
   color: white;
-  margin-right: 17pt;
-  margin-bottom: 17pt;
+  margin-right: 15.3pt;
+  margin-bottom: 15.3pt;
 
   .plantImg {
-    width: 162pt;
-    height: 162pt;
+    width: 145.8pt;
+    height: 145.8pt;
   }
 
   .image-gradient::after {
     display: block;
     position: relative;
     background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #000000 150%);
-    margin-top: -162px;
-    height: 162px;
+    margin-top: -145.8px;
+    height: 145.8px;
     width: 100%;
     border-radius: 3%;
     content: '';
@@ -30,17 +30,17 @@
 
   .bottom-left {
     position: absolute;
-    bottom: 5pt;
-    left: 10pt;
+    bottom: 4.5pt;
+    left: 9pt;
     color: white;
     font-weight: 625;
-    font-size: 17.5px;
-    text-shadow: 3px 3px 5px black;
+    font-size: 15.75px;
+    text-shadow: 2.7px 2.7px 4.5px black;
   }
 
   .add-plant {
-    width: 162pt;
-    height: 162pt;
+    width: 145.8pt;
+    height: 145.8pt;
     background-image: url('/assets/dashed_border.png');
     background-size: cover;
     border-radius: 3%;
@@ -54,26 +54,26 @@
     transform: translate(-50%, -50%);
     color: $beigegray;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 13.5px;
     cursor: pointer;
   }
 }
 
 .greeting {
-  font-size: 36px;
+  font-size: 32.4px;
   color: $beigegray;
   font-weight: 600;
-  height: 100px;
-  margin-left: 37px;
-  margin-top: 27px;
+  height: 90px;
+  margin-left: 33.3px;
+  margin-top: 24.3px;
 }
 
 .your-plants {
-  font-size: 28px;
+  font-size: 25.2px;
   color: $lightgreen;
   font-weight: 600;
-  margin-left: 35px;
-  margin-bottom: 16px;
+  margin-left: 31.5px;
+  margin-bottom: 14.4px;
 }
 
 .hvr-grow {

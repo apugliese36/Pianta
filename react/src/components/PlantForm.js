@@ -148,25 +148,25 @@ class PlantForm extends Component {
               handleSubmit={this.handleSubmit}
               handleImageChange={this.handleImageChange}
               imagePreviewUrl={this.state.imagePreviewUrl}
-              closeModal={this.closeModal}
+              closeModal={this.clearForm}
             />
     } else {
       form = <form>
               <label>
                 <div className='label-text'>Plant Name</div>
-                <input value={this.state.plantName} onChange={this.handleInputChange} name='plantName' type='text' placeholder='What type of plant is this?' />
+                <input className='fontsize' value={this.state.plantName} onChange={this.handleInputChange} name='plantName' type='text' placeholder='What type of plant is this?' />
               </label>
               <label>
                 <div className='label-text'>Plant Nickname</div>
-                <input value={this.state.nickname} onChange={this.handleInputChange} name='nickname' type='text' placeholder='What do you call this plant?' />
+                <input className='fontsize' value={this.state.nickname} onChange={this.handleInputChange} name='nickname' type='text' placeholder='What do you call this plant?' />
               </label>
               <label>
                 <div className='label-text'>When Did You Start Caring For This Plant?</div>
-                <input value={this.state.birthdate} onChange={this.handleInputChange} name='birthdate' type='date' />
+                <input className='fontsize' value={this.state.birthdate} onChange={this.handleInputChange} name='birthdate' type='date' />
               </label>
               <label>
                 <div className='label-text'>Sunlight Needs</div>
-                <select value={this.state.sunlightNeeds}onChange={this.handleInputChange} name='sunlightNeeds'>
+                <select className='fontsize' value={this.state.sunlightNeeds}onChange={this.handleInputChange} name='sunlightNeeds'>
                   <option value='Sunny (Direct Sun)'>Sunny (Direct Sun)</option>
                   <option value='Bright (Indirect Sun)'>Bright (Indirect Sun)</option>
                   <option value='Partially Shaded (Low Light)'>Partially Shaded (Low Light)</option>
@@ -176,7 +176,7 @@ class PlantForm extends Component {
               </label>
               <label>
                 <div className='label-text'>Watering Needs</div>
-                <select value={this.state.wateringNeeds}onChange={this.handleInputChange} name='wateringNeeds'>
+                <select className='fontsize' value={this.state.wateringNeeds}onChange={this.handleInputChange} name='wateringNeeds'>
                   <option value='Daily'>Daily</option>
                   <option value='Weekly'>Weekly</option>
                   <option value='Biweekly'>Biweekly</option>

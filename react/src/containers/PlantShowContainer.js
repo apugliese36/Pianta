@@ -320,19 +320,19 @@ class PlantShowContainer extends React.Component {
       form = <form>
               <label>
                 <div className='label-text'>Plant Name</div>
-                <input value={this.state.plantName} onChange={this.handleInputChange} name='plantName' type='text' />
+                <input className='fontsize' value={this.state.plantName} onChange={this.handleInputChange} name='plantName' type='text' />
               </label>
               <label>
                 <div className='label-text'>Plant Nickname</div>
-                <input value={this.state.nickname} onChange={this.handleInputChange} name='nickname' type='text' />
+                <input className='fontsize' value={this.state.nickname} onChange={this.handleInputChange} name='nickname' type='text' />
               </label>
               <label>
                 <div className='label-text'>When Did You Start Caring For This Plant?</div>
-                <input value={this.state.birthdate} onChange={this.handleInputChange} name='birthdate' type='date' />
+                <input className='fontsize' value={this.state.birthdate} onChange={this.handleInputChange} name='birthdate' type='date' />
               </label>
               <label>
                 <div className='label-text'>Sunlight Needs</div>
-                <select value={this.state.sunlightNeeds} onChange={this.handleInputChange} name='sunlightNeeds'>
+                <select className='fontsize' value={this.state.sunlightNeeds} onChange={this.handleInputChange} name='sunlightNeeds'>
                   <option value='Sunny (Direct Sun)'>Sunny (Direct Sun)</option>
                   <option value='Bright (Indirect Sun)'>Bright (Indirect Sun)</option>
                   <option value='Partially Shaded (Low Light)'>Partially Shaded (Low Light)</option>
@@ -342,7 +342,7 @@ class PlantShowContainer extends React.Component {
               </label>
               <label>
                 <div className='label-text'>Watering Needs</div>
-                <select value={this.state.wateringNeeds} onChange={this.handleInputChange} name='wateringNeeds'>
+                <select className='fontsize' value={this.state.wateringNeeds} onChange={this.handleInputChange} name='wateringNeeds'>
                   <option value='Daily'>Daily</option>
                   <option value='Weekly'>Weekly</option>
                   <option value='Biweekly'>Biweekly</option>

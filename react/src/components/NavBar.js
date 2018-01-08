@@ -16,7 +16,7 @@ class NavBar extends Component{
           <div className="top-bar-left">
             <ul className="menu verdant">
               <li className="menu-text verdant">
-                  <img src='/assets/Pianta_White.png' width='76' height='30' alt='pianta'/>
+                  <img src='/assets/Pianta_White.png' width='68.4' height='27' alt='pianta'/>
               </li>
               <li className="verdant"><Link to='/'>Home</Link></li>
               <li className="verdant"><Link to='#'>Settings</Link></li>
