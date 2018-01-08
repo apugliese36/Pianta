@@ -7,9 +7,10 @@ class DetailsBox extends React.Component {
     this.state = {
       scientificName: ''
     };
+    this.getScientificName = this.getScientificName.bind(this);
   }
-  
-  componentDidMount() {
+
+  getScientificName() {
     let commonName = this.props.commonName.toLowerCase();
     fetch(`https://plantsdb.xyz/search?common_name=${commonName}`)
     .then(response => {
@@ -31,6 +32,10 @@ class DetailsBox extends React.Component {
       }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  componentDidMount() {
+    this.getScientificName()
   }
 
   render() {

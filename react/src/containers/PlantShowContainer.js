@@ -397,10 +397,10 @@ class PlantShowContainer extends React.Component {
         </div>
 
         <div className='medium-4 column beigegray'>
-          { this.state.plant.common_name ? <DetailsBox
+          { this.state.plantName ? <DetailsBox
             handleEdit={this.handleEdit}
             plantId={this.state.plant.id}
-            commonName={this.state.plant.common_name}
+            commonName={this.state.plantName}
             sunlightNeeds={this.state.plant.sunlight_needs}
             wateringNeeds={this.state.plant.watering_needs}
           /> : null }
