@@ -10,8 +10,8 @@ class DetailsBox extends React.Component {
     this.getScientificName = this.getScientificName.bind(this);
   }
 
-  getScientificName() {
-    let commonName = this.props.commonName.toLowerCase();
+  getScientificName(plantName) {
+    let commonName = plantName.toLowerCase();
     fetch(`https://plantsdb.xyz/search?common_name=${commonName}`)
     .then(response => {
       if (response.ok) {
@@ -31,11 +31,14 @@ class DetailsBox extends React.Component {
         this.setState({scientificName:`${genus} ${species}`})
       }
     })
-    .catch(error => console.error(`Error in fetch: ${error.message}`));
+    .catch(error => {
+      this.setState({scientificName: ''})
+      console.error(`Error in fetch: ${error.message}`)
+    })
   }
 
-  componentDidMount() {
-    this.getScientificName()
+  componentWillReceiveProps(nextProps) {
+    this.getScientificName(nextProps.commonName)
   }
 
   render() {
