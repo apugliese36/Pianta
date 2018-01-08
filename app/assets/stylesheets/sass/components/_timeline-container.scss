@@ -3,14 +3,14 @@
 @import "../base/reset";
 
 #scrollbar {
-  height: calc(100vh - 137px)!important;
+  height: calc(100vh - 123.3px)!important;
 }
 
 .journal-container {
   position: relative;
   background-color: #2b2e2e;
   color: white;
-  height: calc(100vh - 68.19px);
+  height: calc(100vh - 61.371px);
   padding: 0;
 }
 
@@ -20,15 +20,15 @@
 
 .days-header {
   text-align: center;
-  font-size: 14.5pt;
-  margin-top: 14pt;
-  margin-bottom: 14pt;
+  font-size: 13.05pt;
+  margin-top: 12.6pt;
+  margin-bottom: 12.6pt;
 }
 
 .bottom-right {
   position: absolute;
-  bottom: 16px;
-  right: 17px;
+  bottom: 14.4px;
+  right: 15.3px;
 }
 
 .snapshot-row {
@@ -58,20 +58,21 @@
 }
 
 .snapshot-date {
-  font-size: 10pt;
-  padding-top: 3px;
+  font-size: 9pt;
+  padding-top: 2.7px;
 }
 
 .snapshot {
   border-left-style: solid;
-  border-width: 1px;
+  border-width: .9px;
   border-color: $beigegray;
+  font-size: 90%;
 }
 
 hr.line {
   color: $beigegray;
   background-color: $beigegray;
   margin: 0;
-  margin-bottom: 2px;
+  margin-bottom: 1.8px;
 
 }
