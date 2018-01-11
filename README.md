@@ -31,6 +31,9 @@ Things you may want to cover:
 -React.js
 -Ruby on Rails
 -Postgres
+-SASS
+-React-Modal
+-React-Custom-Scrollbar
 
 * Badges:
 
