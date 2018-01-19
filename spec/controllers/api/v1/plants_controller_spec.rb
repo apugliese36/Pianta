@@ -92,4 +92,36 @@ RSpec.describe Api::V1::PlantsController, type: :controller do
       expect { post :create, params: params }.to change(Plant, :count).by(1)
     end
   end
+
+  # describe 'PATCH#update' do
+  #   it 'update a single plant' do
+  #     params =
+  #       {
+  #         plant:
+  #           {
+  #             name: 'cutiezzz',
+  #             common_name: 'sunflower',
+  #             photo: 'sunflower.jpeg',
+  #             user_id: user.id
+  #           }
+  #       }
+  #     patch :update, id: sunflower, params: params
+  #     returned_json = JSON.parse(response.body)
+  #
+  #     expect(response.status).to eq 200
+  #     expect(response.content_type).to eq('application/json')
+  #
+  #     expect(returned_json['plant']['name']).to eq 'cutiezzz'
+  #     expect(returned_json['plant']['common_name']).to eq 'sunflower'
+  #     expect(returned_json['plant']['photo']).to eq 'sunflower.jpeg'
+  #     expect(returned_json['plant']['user_id']).to eq user.id
+  #   end
+  # end
+
+  describe 'DELETE#destroy' do
+    it 'should delete a plant' do
+      expect { delete :destroy, params: { id: sunflower.id } }.to change(Plant, :count).by(-1)
+    end
+  end
+
 end

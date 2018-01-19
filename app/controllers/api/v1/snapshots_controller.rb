@@ -17,19 +17,7 @@ class Api::V1::SnapshotsController < ApiController
     end
   end
 
-  # def destroy
-  #   @superhero = Superhero.find(params[:id])
-  #   @superhero.delete
-  # end
-
   private
-
-  # def require_permission
-  #   @superhero = Superhero.find(params[:id])
-  #   if current_user.id != @superhero.user_id && current_user.role != 'admin'
-  #     redirect_to :root
-  #   end
-  # end
 
   def snapshot_params
     params.require(:snapshot).permit(
