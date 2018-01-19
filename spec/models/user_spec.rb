@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
       }
     }
 
-    #create
+    # create
     User.update_or_create(auth)
     new_user = User.first
 
@@ -29,7 +29,7 @@ RSpec.describe User, type: :model do
     expect(new_user.token).to eq('abcdefg12345')
     expect(new_user.refresh_token).to eq('12345abcdefg')
 
-    #update
+    # update
     User.update_or_create(auth)
     new_user = User.first
 
