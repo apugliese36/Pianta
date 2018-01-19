@@ -120,8 +120,9 @@ RSpec.describe Api::V1::PlantsController, type: :controller do
 
   describe 'DELETE#destroy' do
     it 'should delete a plant' do
-      expect { delete :destroy, params: { id: sunflower.id } }.to change(Plant, :count).by(-1)
+      expect do
+        delete :destroy, params: { id: sunflower.id }
+      end.to change(Plant, :count).by(-1)
     end
   end
-
 end
