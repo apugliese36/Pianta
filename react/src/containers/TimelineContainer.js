@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { browserHistory, Link } from 'react-router';
 import SnapshotTile from '../components/SnapshotTile'
 import { Scrollbars } from 'react-custom-scrollbars'
+import TimelineHeader from '../components/TimelineHeader'
 
 const TimelineContainer = props => {
   let snapshots = props.snapshots.map(snapshot => {
@@ -32,7 +33,7 @@ const TimelineContainer = props => {
 
   return(
     <div className='medium-4 column journal-container'>
-      <h3 className='days-header'><strong>{props.numberOfDays} days</strong> in your care</h3>
+      <TimelineHeader numberOfDays={props.numberOfDays}/>
       <hr className='line'/>
       <Scrollbars id='scrollbar'>
         {snapshots}
