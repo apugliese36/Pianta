@@ -1,3 +1,4 @@
+// needs refactoring, file to be refactored
 import React from 'react';
 import { Router, browserHistory } from 'react-router';
 import TimelineContainer from './TimelineContainer'
