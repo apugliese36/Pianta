@@ -1,7 +1,5 @@
 # README
 
-Things you may want to cover:
-
 * Name: Pianta
 
 * Ruby version: 2.3.3
